@@ -35,12 +35,17 @@ module.exports = {
         lg: '976px',
         xl: '1440px'
       },
+      borderRadius: {
+        xl: '1rem',
+        '2xl': '1.5rem',
+        '3xl': '2rem'
+      },
       colors: {
         primary: '#191A32',
         secondary: '#33CEF6',
         tertiary: '#33B0F6',
         white: '#FBFBFF',
-        black: '#222',
+        black: '#000',
         accent: '#FF2060',
         gray: '#C2C3CC',
         'gray-100': '#f1f1f1'

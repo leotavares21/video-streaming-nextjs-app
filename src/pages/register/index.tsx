@@ -6,7 +6,7 @@ function RegisterPage() {
   return (
     <Layout>
       <div className="flex justify-center items-center h-screen">
-        <div className="flex justify-center items-center max-w-md mx-auto w-screen lg:px-6 sm:px-4 px-2 py-8 flex-col rounded-[24px]  bg-white">
+        <div className="flex justify-center items-center max-w-md mx-auto w-screen lg:px-6 sm:px-4 px-2 py-8 flex-col rounded-2xl bg-white">
           <h1 className="text-3xl text-black font-medium mb-6">Criar conta</h1>
           <form className="flex flex-col justify-center items-center w-full">
             <input

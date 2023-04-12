@@ -9,7 +9,7 @@ export default function NavBar() {
         <div className="text-black absolute left-4 cursor-pointer">@</div>
         <input
           type="text"
-          className="text-black rounded-[16px] pl-10 pr-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-secondary"
+          className="text-black rounded-xl pl-10 pr-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-secondary"
           placeholder="Buscar..."
         />
       </form>
