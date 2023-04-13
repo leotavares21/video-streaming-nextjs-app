@@ -16,7 +16,7 @@ function Layout({ children }: LayoutProps) {
   return (
     <>
       {!hideNavbar && <Navbar />}
-      <main className="container max-w-screen-xl px-1 mx-auto">{children}</main>
+      <main className="container max-w-screen-xl px-4 mx-auto">{children}</main>
     </>
   );
 }

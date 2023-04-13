@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 export default function Home() {
@@ -50,6 +51,7 @@ export default function Home() {
           className={`flex items-center gap-2 text-xl py-2 pr-4 hover:brightness-90 ${
             activeTab === 1 ? 'text-secondary' : 'text-gray'
           }`}
+          data-testid="tabActivation"
           onClick={() => setActiveTab(1)}
         >
           <div
@@ -57,12 +59,13 @@ export default function Home() {
               activeTab === 1 ? 'opacity-1' : 'opacity-0'
             }`}
           />
-          <span>Trending</span>
+          <span>Em alta</span>
         </button>
         <button
           className={`flex items-center gap-2 text-xl py-2 pr-4 hover:brightness-90 ${
             activeTab === 2 ? 'text-secondary' : 'text-gray'
           }`}
+          data-testid="tabActivation2"
           onClick={() => setActiveTab(2)}
         >
           <div
@@ -70,13 +73,16 @@ export default function Home() {
               activeTab === 2 ? 'opacity-1' : 'opacity-0'
             }`}
           />
-          <span>Subscriptions</span>
+          <span>Inscrições</span>
         </button>
       </div>
       {activeTab === 1 && (
-        <div className="grid grid-cols-4 gap-4">
+        <div
+          className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-4"
+          data-testid="videos-container"
+        >
           {videos.map((video) => (
-            <div key={video.id} className="relative h-60">
+            <Link href="/video" key={video.id} className="relative h-60">
               <span className="absolute top-5 left-5 bg-accent text-white px-2 py-1 rounded-full text-sm mr-2">
                 Ao vivo
               </span>
@@ -109,7 +115,7 @@ export default function Home() {
                   </div>
                 )}
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       )}
@@ -120,17 +126,19 @@ export default function Home() {
               className="flex items-center justify-between mb-2"
               key={video.id}
             >
-              <figure className="flex justify-between items-center gap-4">
-                <img
-                  src={video.channel_img}
-                  alt={video.channel}
-                  className="rounded-full w-20 h-20"
-                />
+              <Link href="channel">
+                <figure className="flex justify-between items-center gap-4">
+                  <img
+                    src={video.channel_img}
+                    alt={video.channel}
+                    className="rounded-full w-20 h-20"
+                  />
 
-                <figcaption className="text-gray-100 text-lg font-medium">
-                  {video.channel}
-                </figcaption>
-              </figure>
+                  <figcaption className="text-gray-100 text-lg font-medium">
+                    {video.channel}
+                  </figcaption>
+                </figure>
+              </Link>
             </div>
           ))}
         </div>
