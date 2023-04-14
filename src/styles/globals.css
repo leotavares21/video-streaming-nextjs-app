@@ -8,7 +8,37 @@
   body {
     @apply bg-primary text-white;
   }
+
+  h1 {
+    @apply text-3xl mb-4 font-medium;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  h2,
+  h3 {
+    @apply mb-4 font-medium;
+  }
+
   a {
     @apply no-underline;
+  }
+
+  .btn {
+    @apply px-6 py-3 font-medium rounded-3xl text-white hover:brightness-90;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary;
+  }
+
+  .btn-black {
+    @apply bg-black;
   }
 }

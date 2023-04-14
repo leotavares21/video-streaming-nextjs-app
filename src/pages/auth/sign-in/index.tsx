@@ -38,14 +38,14 @@ const SignInPage = () => {
             <div className="flex justify-between gap-3 w-full">
               <button
                 type="button"
-                className="w-full bg-blue-500 text-white py-3 rounded-full my-2 hover:brightness-90"
+                className="btn w-full bg-blue-500 my-2"
                 onClick={handleGoogleLogin}
               >
                 Google
               </button>
               <button
                 type="button"
-                className="w-full bg-blue-800 text-white py-3 rounded-full my-2 hover:brightness-90"
+                className="btn w-full bg-blue-800 my-2"
                 onClick={handleFacebookLogin}
               >
                 Facebook
@@ -57,8 +57,8 @@ const SignInPage = () => {
             </Link>
 
             <Link
-              href="register"
-              className="text-center w-full bg-secondary text-white font-medium py-3 mt-4 hover:brightness-90 rounded-full "
+              href="/auth/register"
+              className="btn btn-secondary text-center w-full mt-4"
             >
               Criar conta
             </Link>

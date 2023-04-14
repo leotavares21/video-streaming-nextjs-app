@@ -11,7 +11,7 @@ function Layout({ children }: LayoutProps) {
 
   // verifica se a rota é a página de login ou registro
   const hideNavbar =
-    router.pathname === '/sign-in' || router.pathname === '/register';
+    router.pathname === '/auth/sign-in' || router.pathname === '/auth/register';
 
   return (
     <>

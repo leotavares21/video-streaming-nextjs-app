@@ -30,13 +30,11 @@ function RegisterPage() {
               className="w-full px-4 py-3 text-black my-2 bg-gray-100 rounded-full"
             />
 
-            <button className="py-3 w-full bg-black text-white font-medium rounded-full my-6 hover:brightness-90">
-              Criar conta
-            </button>
+            <button className="btn btn-black w-full my-6">Criar conta</button>
 
             <Link
-              href="sign-in"
-              className="text-center w-full bg-secondary text-white font-medium py-3 hover:brightness-90 rounded-full "
+              href="/auth/sign-in"
+              className="btn btn-secondary text-center w-full"
             >
               Logar conta
             </Link>

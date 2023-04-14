@@ -1,80 +1,33 @@
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 
-export default function Home() {
-  const [activeTab, setActiveTab] = useState(1);
+import Tab from 'components/Tab';
 
-  const [videos] = React.useState([
-    {
-      id: 1,
-      title: 'Video 1',
-      thumbnail: 'https://source.unsplash.com/random/500x400?video',
-      live: true,
-      viewers: 1520,
-      channel: 'Channel 1',
-      channel_img: 'https://source.unsplash.com/random/200x200?person'
-    },
-    {
-      id: 2,
-      title: 'Video 2',
-      thumbnail: 'https://source.unsplash.com/random/500x400?video',
-      live: true,
-      viewers: 840,
-      channel: 'Channel 2',
-      channel_img: 'https://source.unsplash.com/random/200x200?person'
-    },
-    {
-      id: 3,
-      title: 'Video 3',
-      thumbnail: 'https://source.unsplash.com/random/500x400?video',
-      live: true,
-      viewers: 510,
-      channel: 'Channel 3',
-      channel_img: 'https://source.unsplash.com/random/200x200?person'
-    },
-    {
-      id: 4,
-      title: 'Video 4',
-      thumbnail: 'https://source.unsplash.com/random/500x400?video',
-      live: true,
-      viewers: 720,
-      channel: 'Channel 4',
-      channel_img: 'https://source.unsplash.com/random/200x200?person'
-    }
-  ]);
+import { PagesMapState } from 'store/types';
 
+type Videos = {
+  id: number;
+  title: string;
+  thumbnail: string;
+  live: boolean;
+  viewers: number;
+  channel: string;
+  channel_img: string;
+};
+
+type HomeProps = {
+  activeTab: number;
+  videos: Videos[];
+};
+
+function HomePage({ activeTab, videos }: HomeProps) {
   return (
     <>
-      <h1 className="text-3xl font-medium mb-4">Video Streaming</h1>
+      <h1>Video Streaming</h1>
       <div className="flex mb-8">
-        <button
-          className={`flex items-center gap-2 text-xl py-2 pr-4 hover:brightness-90 ${
-            activeTab === 1 ? 'text-secondary' : 'text-gray'
-          }`}
-          data-testid="tabActivation"
-          onClick={() => setActiveTab(1)}
-        >
-          <div
-            className={`w-1.5 h-1.5 rounded-full bg-secondary ${
-              activeTab === 1 ? 'opacity-1' : 'opacity-0'
-            }`}
-          />
-          <span>Em alta</span>
-        </button>
-        <button
-          className={`flex items-center gap-2 text-xl py-2 pr-4 hover:brightness-90 ${
-            activeTab === 2 ? 'text-secondary' : 'text-gray'
-          }`}
-          data-testid="tabActivation2"
-          onClick={() => setActiveTab(2)}
-        >
-          <div
-            className={`w-1.5 h-1.5 rounded-full bg-secondary ${
-              activeTab === 2 ? 'opacity-1' : 'opacity-0'
-            }`}
-          />
-          <span>Inscrições</span>
-        </button>
+        <Tab tabNumber={1}>Em alta</Tab>
+        <Tab tabNumber={2}>Inscrições</Tab>
       </div>
       {activeTab === 1 && (
         <div
@@ -82,7 +35,11 @@ export default function Home() {
           data-testid="videos-container"
         >
           {videos.map((video) => (
-            <Link href="/video" key={video.id} className="relative h-60">
+            <Link
+              href="username/video/123"
+              key={video.id}
+              className="relative h-60"
+            >
               <span className="absolute top-5 left-5 bg-accent text-white px-2 py-1 rounded-full text-sm mr-2">
                 Ao vivo
               </span>
@@ -146,3 +103,10 @@ export default function Home() {
     </>
   );
 }
+
+const mapStateToProps = (state: PagesMapState) => ({
+  activeTab: state.tab.activeTab,
+  videos: state.videos.data
+});
+
+export default connect(mapStateToProps)(HomePage);

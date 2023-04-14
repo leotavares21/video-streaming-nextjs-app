@@ -38,7 +38,6 @@
     "prettier/prettier": "error",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
-    "no-unused-vars": "error",
     "import-helpers/order-imports": [
       "warn",
       {
