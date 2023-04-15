@@ -1,9 +1,9 @@
-import Link from 'next/link';
 import React from 'react';
 import { RiVideoAddFill } from 'react-icons/ri';
 import { connect } from 'react-redux';
 
 import Tab from 'components/Tab';
+import VideosThumb from 'components/VideosThumb';
 
 import { PagesMapState } from 'store/types';
 
@@ -12,28 +12,6 @@ type ProfileProps = {
 };
 
 const ProfilePage = ({ activeTab }: ProfileProps) => {
-  const [videos] = React.useState([
-    {
-      id: 1,
-      title: 'Video 1',
-      thumbnail: 'https://source.unsplash.com/random/500x400?video',
-      live: false,
-      viewers: 1520,
-      total_views: 8564,
-      channel: 'Channel 1',
-      channel_img: 'https://source.unsplash.com/random/200x200?person'
-    },
-    {
-      id: 2,
-      title: 'Video 2',
-      thumbnail: 'https://source.unsplash.com/random/500x400?video',
-      live: false,
-      viewers: 840,
-      total_views: 5487,
-      channel: 'Channel 2',
-      channel_img: 'https://source.unsplash.com/random/200x200?person'
-    }
-  ]);
   return (
     <div className="flex flex-col">
       <h1 className="flex lg:justify-start justify-center">Configuração</h1>
@@ -44,17 +22,26 @@ const ProfilePage = ({ activeTab }: ProfileProps) => {
 
       {activeTab === 1 && (
         <div className="flex flex-col items-center lg:items-start lg:flex-row">
-          <div className="lg:w-1/3 w-full text-center mb-20 lg:mb-0">
-            <figure className="flex flex-col items-center mb-6">
+          <div className="lg:w-1/3 w-full flex flex-col items-center mb-20 lg:mb-0">
+            <figure className="flex flex-col items-center">
               <img
                 src="https://source.unsplash.com/random/200x200?person"
                 alt="person"
                 className="w-36 h-36 rounded-full  border-4 border-secondary mb-4"
               />
-              <figcaption className="text-xl font-medium">User</figcaption>
+              <figcaption className="flex flex-col items-center">
+                <span className="text-xl font-medium mb-4">Username</span>
+                <div className="flex justify-center gap-4">
+                  <span>59 videos</span>
+                  <span className="border-gray px-4 border-r-2 border-l-2">
+                    12 mil inscritos
+                  </span>
+                  <span>21 inscrições</span>
+                </div>
+              </figcaption>
             </figure>
 
-            <button className="btn btn-secondary">Atualizar foto</button>
+            <button className="btn btn-secondary mt-8">Atualizar foto</button>
           </div>
 
           <div className="lg:w-2/3 w-full lg:pl-24 pl-0 lg:border-l-2 lg:border-l-gray border-l-0">
@@ -128,57 +115,7 @@ const ProfilePage = ({ activeTab }: ProfileProps) => {
           <section>
             <h2 className="mb-8">Lives passadas</h2>
 
-            <div
-              className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-4"
-              data-testid="videos-container"
-            >
-              {videos.map((video) => (
-                <Link
-                  href="username/video/123"
-                  key={video.id}
-                  className="relative h-60"
-                >
-                  {video.live && (
-                    <span className="absolute top-5 left-5 bg-accent text-white px-2 py-1 rounded-full text-sm mr-2">
-                      Ao vivo
-                    </span>
-                  )}
-                  <img
-                    src={video.thumbnail}
-                    alt={video.title}
-                    className="w-full h-full object-cover rounded-3xl"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-opacity-50 bg-gradient-to-b from-transparent to-black rounded-b-3xl">
-                    <div className="flex items-center justify-between mb-2">
-                      <figure className="flex justify-between items-center gap-4">
-                        {video.live && (
-                          <img
-                            src={video.channel_img}
-                            alt={video.channel}
-                            className="rounded-full w-20 h-20"
-                          />
-                        )}
-
-                        <figcaption>
-                          <div className="font-medium text-lg">
-                            {video.title}
-                          </div>
-                          {video.live && (
-                            <div className="text-gray-100 text-sm">
-                              {video.channel}
-                            </div>
-                          )}
-                        </figcaption>
-                      </figure>
-
-                      <span className="text-gray-100">
-                        {video.total_views} visualizações
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
+            <VideosThumb />
           </section>
         </div>
       )}

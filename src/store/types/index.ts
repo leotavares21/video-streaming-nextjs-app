@@ -16,6 +16,7 @@ export type Videos = {
   thumbnail: string;
   live: boolean;
   viewers: number;
+  total_views: number;
   channel: string;
   channel_img: string;
 };

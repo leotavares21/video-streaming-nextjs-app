@@ -6,8 +6,8 @@ export default function NavBar() {
   return (
     <header className="container mx-auto px-4 max-w-screen-xl flex items-center gap-2 justify-between h-20 mb-8">
       <Link href="/" className="md:w-1/3 sm:w-2/10">
-        <IoVideocam className="text-secondary text-[2.5rem]" />
-        <span className="font-medium">Video</span>
+        <IoVideocam className="text-secondary text-[2rem]" />
+        <span className="font-medium">Início</span>
       </Link>
 
       <form className="md:w-1/2 sm:w-6/10 flex items-center justify-center relative">

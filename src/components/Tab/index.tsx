@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { Dispatch, bindActionCreators } from 'redux';
@@ -13,6 +14,10 @@ type TabProps = {
 };
 
 function Tab({ children, tabNumber, activeTab, setCurrentTab }: TabProps) {
+  useEffect(() => {
+    setCurrentTab(1);
+  }, [setCurrentTab]);
+
   return (
     <button
       onClick={() => setCurrentTab(tabNumber)}
