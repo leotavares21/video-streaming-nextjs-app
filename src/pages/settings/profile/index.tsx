@@ -23,13 +23,13 @@ const ProfilePage = ({ activeTab }: ProfileProps) => {
       {activeTab === 1 && (
         <div className="flex flex-col items-center lg:items-start lg:flex-row">
           <div className="lg:w-1/3 w-full flex flex-col items-center mb-20 lg:mb-0">
-            <figure className="flex flex-col items-center">
+            <div className="flex flex-col items-center">
               <img
                 src="https://source.unsplash.com/random/200x200?person"
                 alt="person"
                 className="w-36 h-36 rounded-full  border-4 border-secondary mb-4"
               />
-              <figcaption className="flex flex-col items-center">
+              <div className="flex flex-col items-center">
                 <span className="text-xl font-medium mb-4">Username</span>
                 <div className="flex justify-center gap-4">
                   <span>59 videos</span>
@@ -38,8 +38,8 @@ const ProfilePage = ({ activeTab }: ProfileProps) => {
                   </span>
                   <span>21 inscrições</span>
                 </div>
-              </figcaption>
-            </figure>
+              </div>
+            </div>
 
             <button className="btn btn-secondary mt-8">Atualizar foto</button>
           </div>
@@ -65,7 +65,7 @@ const ProfilePage = ({ activeTab }: ProfileProps) => {
                     <input
                       type="text"
                       placeholder="Nome"
-                      className="px-4 py-2 w-full text-black focus:outline-none focus:ring-2 focus:ring-secondary rounded-xl"
+                      className="input-form input-outline"
                     />
                   </div>
 
@@ -76,7 +76,7 @@ const ProfilePage = ({ activeTab }: ProfileProps) => {
                     <input
                       type="text"
                       placeholder="Sobrenome"
-                      className="px-4 py-2 w-full text-black focus:outline-none focus:ring-2 focus:ring-secondary rounded-xl"
+                      className="input-form input-outline"
                     />
                   </div>
                 </div>
@@ -85,7 +85,7 @@ const ProfilePage = ({ activeTab }: ProfileProps) => {
                 </label>
                 <input
                   type="text"
-                  className="px-4 py-2 mb-8 text-black focus:outline-none focus:ring-2 focus:ring-secondary rounded-xl"
+                  className="mb-8 input-form input-outline"
                   placeholder="E-mail"
                 />
 
@@ -93,7 +93,7 @@ const ProfilePage = ({ activeTab }: ProfileProps) => {
                   Sobre
                 </label>
                 <textarea
-                  className="px-4 py-2 mb-8 text-black focus:outline-none focus:ring-2 focus:ring-secondary rounded-xl"
+                  className="mb-8 input-form input-outline"
                   placeholder="Descrição"
                 />
               </div>

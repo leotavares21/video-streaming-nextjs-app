@@ -20,16 +20,8 @@ const SignInPage = () => {
         <div className="flex justify-center items-center max-w-md mx-auto w-screen lg:px-6 sm:px-4 px-2 py-8 flex-col rounded-xl bg-white">
           <h1 className="text-3xl text-black font-medium mb-6">Entrar</h1>
           <form className="flex flex-col justify-center items-center w-full">
-            <input
-              type="email"
-              placeholder="E-mail"
-              className="w-full px-4 py-3 text-black my-2 bg-gray-100 rounded-full"
-            />
-            <input
-              type="password"
-              placeholder="Senha"
-              className="w-full px-4 py-3 text-black my-2 bg-gray-100 rounded-full"
-            />
+            <input type="email" placeholder="E-mail" className="input-auth" />
+            <input type="password" placeholder="Senha" className="input-auth" />
 
             <button className="py-3 w-full bg-black text-white font-medium rounded-full my-6 hover:brightness-90">
               Entrar

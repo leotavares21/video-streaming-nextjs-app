@@ -14,7 +14,7 @@ export default function NavBar() {
         <FiSearch className="text-black absolute left-3 cursor-pointer text-xl" />
         <input
           type="text"
-          className="text-black rounded-xl pl-10 pr-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-secondary"
+          className="rounded-xl pl-10 pr-4 py-3 input-outline"
           placeholder="Buscar..."
         />
       </form>

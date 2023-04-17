@@ -3,20 +3,18 @@ import VideosThumb from 'components/VideosThumb';
 export default function ChannelPage() {
   return (
     <div>
-      <div className="flex justify-between mb-8">
+      <div className="flex items-center justify-between border-1 border-b border-gray pb-4 mb-8">
         <figure className="flex items-center gap-6">
           <img
             src="https://source.unsplash.com/random/200x200?person"
             alt="person"
-            className="w-28 h-28 rounded-full  border-4 border-secondary mb-4"
+            className="w-28 h-28 rounded-full border-4 border-secondary"
           />
-          <figcaption className=" text-center text-xl font-medium">
-            Username
-          </figcaption>
-          <span>12 mil inscritos</span>
+          <figcaption className="text-xl font-medium">Username</figcaption>
+          <span className="text-gray">12 mil inscritos</span>
         </figure>
 
-        <button>Inscrever-se</button>
+        <button className="btn border-2 border-accent">Inscrever-se</button>
       </div>
 
       <section>

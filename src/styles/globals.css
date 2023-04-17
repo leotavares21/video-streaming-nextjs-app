@@ -6,7 +6,7 @@
 
 @layer utilities {
   body {
-    @apply bg-primary text-white;
+    @apply bg-primary text-white scroll-smooth;
   }
 
   h1 {
@@ -30,6 +30,11 @@
     @apply no-underline;
   }
 
+  input,
+  textarea {
+    @apply text-black;
+  }
+
   .btn {
     @apply px-6 py-3 font-medium rounded-3xl text-white hover:brightness-90;
   }
@@ -40,5 +45,29 @@
 
   .btn-black {
     @apply bg-black;
+  }
+
+  .input-form {
+    @apply px-4 py-2;
+  }
+
+  .input-auth {
+    @apply w-full px-4 py-3 text-black my-2 bg-gray-100 rounded-full placeholder-gray-300;
+  }
+
+  .input-outline {
+    @apply w-full focus:outline-none focus:ring-2 focus:ring-secondary rounded-xl;
+  }
+
+  .scroll-chat::-webkit-scrollbar {
+    @apply w-[0.5rem]; /* largura da barra de rolagem */
+  }
+
+  .scroll-chat::-webkit-scrollbar-track {
+    @apply bg-gray-500 rounded-xl;
+  }
+
+  .scroll-chat::-webkit-scrollbar-thumb {
+    @apply bg-gray rounded-xl; /* cor da barra de rolagem */
   }
 }

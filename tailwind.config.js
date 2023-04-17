@@ -48,12 +48,9 @@ module.exports = {
         black: '#000',
         accent: '#FF2060',
         gray: '#C2C3CC',
-        'gray-100': '#f1f1f1'
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
+        'gray-100': '#f1f1f1',
+        'gray-300': '#888',
+        'gray-500': '#555'
       }
     }
   },
