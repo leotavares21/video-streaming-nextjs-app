@@ -1,26 +1,14 @@
-import { useEffect } from 'react';
-import { connect } from 'react-redux';
-
-import { Dispatch, bindActionCreators } from 'redux';
-
-import * as tabActions from 'store/actions/tab';
-import { PagesMapState } from 'store/types';
-
 type TabProps = {
   children: React.ReactNode;
-  tabNumber: number;
   activeTab: number;
-  setCurrentTab: (tabNumber: number) => void;
+  tabNumber: number;
+  handleTab: () => void;
 };
 
-function Tab({ children, tabNumber, activeTab, setCurrentTab }: TabProps) {
-  useEffect(() => {
-    setCurrentTab(1);
-  }, [setCurrentTab]);
-
+function Tab({ children, activeTab, tabNumber, handleTab }: TabProps) {
   return (
     <button
-      onClick={() => setCurrentTab(tabNumber)}
+      onClick={handleTab}
       className={`flex items-center gap-2 text-xl py-2 pr-4 hover:brightness-90 ${
         activeTab === tabNumber ? 'text-secondary' : 'text-gray'
       }`}
@@ -31,16 +19,9 @@ function Tab({ children, tabNumber, activeTab, setCurrentTab }: TabProps) {
           activeTab === tabNumber ? 'opacity-1' : 'opacity-0'
         }`}
       />
-      <span>{children}</span>
+      {children}
     </button>
   );
 }
 
-const mapStateToProps = (state: PagesMapState) => ({
-  activeTab: state.tab.activeTab
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) =>
-  bindActionCreators(Object.assign({}, tabActions), dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Tab);
+export default Tab;

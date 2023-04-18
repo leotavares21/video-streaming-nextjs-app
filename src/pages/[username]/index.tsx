@@ -1,6 +1,14 @@
+import { connect } from 'react-redux';
+
 import VideosThumb from 'components/VideosThumb';
 
-export default function ChannelPage() {
+import { PagesMapState, Videos } from 'store/types';
+
+type ChannelPageProps = {
+  videos: Videos[];
+};
+
+function ChannelPage({ videos }: ChannelPageProps) {
   return (
     <div>
       <div className="flex items-center justify-between border-1 border-b border-gray pb-4 mb-8">
@@ -19,8 +27,13 @@ export default function ChannelPage() {
 
       <section>
         <h1>Videos</h1>
-        <VideosThumb />
+        <VideosThumb videos={videos} />
       </section>
     </div>
   );
 }
+const mapStateToProps = (state: PagesMapState) => ({
+  videos: state.videos.data
+});
+
+export default connect(mapStateToProps)(ChannelPage);

@@ -1,18 +1,18 @@
 import Link from 'next/link';
 import React from 'react';
-import { connect } from 'react-redux';
 
-import { PagesMapState, Videos } from 'store/types';
+import { Videos } from 'store/types';
 
 type VideosThumbProps = {
   videos: Videos[];
+  testid?: string;
 };
 
-function VideosThumb({ videos }: VideosThumbProps) {
+function VideosThumb({ videos, testid }: VideosThumbProps) {
   return (
     <div
       className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-4"
-      data-testid="videos-container"
+      data-testid={testid}
     >
       {videos.map((video) => (
         <Link
@@ -60,8 +60,4 @@ function VideosThumb({ videos }: VideosThumbProps) {
   );
 }
 
-const mapStateToProps = (state: PagesMapState) => ({
-  videos: state.videos.data
-});
-
-export default connect(mapStateToProps)(VideosThumb);
+export default VideosThumb;

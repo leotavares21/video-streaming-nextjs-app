@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
-import tabReducer from './tab';
-import videosReducer from './videos';
+import livesReducer from 'store/reducers/lives';
+import userReducer from 'store/reducers/user';
+import videosReducer from 'store/reducers/videos';
 
 export default combineReducers({
-  tab: tabReducer,
-  videos: videosReducer
+  videos: videosReducer,
+  lives: livesReducer,
+  user: userReducer
 });

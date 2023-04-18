@@ -32,7 +32,7 @@
 
   input,
   textarea {
-    @apply text-black;
+    @apply text-black placeholder-gray-300;
   }
 
   .btn {
@@ -52,7 +52,7 @@
   }
 
   .input-auth {
-    @apply w-full px-4 py-3 text-black my-2 bg-gray-100 rounded-full placeholder-gray-300;
+    @apply w-full px-4 py-3 text-black my-2 bg-gray-100 rounded-2xl;
   }
 
   .input-outline {

@@ -99,7 +99,7 @@ export default function Chat({ username }: ChatProps) {
       </div>
 
       {true && (
-        <div className="flex items-center justify-center px-4 w-full gap-2">
+        <div className="flex items-center justify-center px-4 w-full gap-4">
           <span>Entre para escrever no chat</span>
           <button
             className="btn btn-secondary"

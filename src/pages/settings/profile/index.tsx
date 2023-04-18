@@ -1,23 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RiVideoAddFill } from 'react-icons/ri';
 import { connect } from 'react-redux';
 
+import Modal from 'components/Modal';
 import Tab from 'components/Tab';
 import VideosThumb from 'components/VideosThumb';
 
-import { PagesMapState } from 'store/types';
+import { PagesMapState, User, Videos } from 'store/types';
 
-type ProfileProps = {
-  activeTab: number;
+type ProfilePageProps = {
+  videos: Videos[];
+  user: User;
 };
 
-const ProfilePage = ({ activeTab }: ProfileProps) => {
+const ProfilePage = ({ videos, user }: ProfilePageProps) => {
+  const [activeTab, setActiveTab] = useState(1);
+  const [openModal, setOpenModal] = useState(false);
+
+  function handleTabClick(tab: number) {
+    setActiveTab(tab);
+  }
+
+  function closeModal() {
+    setOpenModal(false);
+  }
   return (
     <div className="flex flex-col">
       <h1 className="flex lg:justify-start justify-center">Configuração</h1>
       <div className="flex lg:justify-start justify-center mb-12">
-        <Tab tabNumber={1}>Perfil</Tab>
-        <Tab tabNumber={2}>Vídeos</Tab>
+        <Tab
+          handleTab={() => handleTabClick(1)}
+          tabNumber={1}
+          activeTab={activeTab}
+        >
+          Perfil
+        </Tab>
+        <Tab
+          handleTab={() => handleTabClick(2)}
+          tabNumber={2}
+          activeTab={activeTab}
+        >
+          Videos
+        </Tab>
       </div>
 
       {activeTab === 1 && (
@@ -25,12 +49,12 @@ const ProfilePage = ({ activeTab }: ProfileProps) => {
           <div className="lg:w-1/3 w-full flex flex-col items-center mb-20 lg:mb-0">
             <div className="flex flex-col items-center">
               <img
-                src="https://source.unsplash.com/random/200x200?person"
+                src={user.img}
                 alt="person"
                 className="w-36 h-36 rounded-full  border-4 border-secondary mb-4"
               />
               <div className="flex flex-col items-center">
-                <span className="text-xl font-medium mb-4">Username</span>
+                <span className="text-xl font-medium mb-4">{`${user.name} ${user.last_name}`}</span>
                 <div className="flex justify-center gap-4">
                   <span>59 videos</span>
                   <span className="border-gray px-4 border-r-2 border-l-2">
@@ -59,42 +83,46 @@ const ProfilePage = ({ activeTab }: ProfileProps) => {
               <div className="flex flex-col">
                 <div className="flex justify-between gap-4 mb-8">
                   <div className="flex flex-col w-full">
-                    <label htmlFor="" className="mb-3">
+                    <label htmlFor="name" className="mb-3">
                       Nome
                     </label>
                     <input
                       type="text"
                       placeholder="Nome"
                       className="input-form input-outline"
+                      name="name"
                     />
                   </div>
 
                   <div className="flex flex-col w-full">
-                    <label htmlFor="" className="mb-3">
+                    <label htmlFor="lastname" className="mb-3">
                       Sobrenome
                     </label>
                     <input
                       type="text"
                       placeholder="Sobrenome"
                       className="input-form input-outline"
+                      name="lastname"
                     />
                   </div>
                 </div>
-                <label htmlFor="" className="mb-3">
+                <label htmlFor="email" className="mb-3">
                   E-mail
                 </label>
                 <input
                   type="text"
                   className="mb-8 input-form input-outline"
                   placeholder="E-mail"
+                  name="email"
                 />
 
-                <label htmlFor="" className="mb-3">
+                <label htmlFor="about" className="mb-3">
                   Sobre
                 </label>
                 <textarea
                   className="mb-8 input-form input-outline"
                   placeholder="Descrição"
+                  name="about"
                 />
               </div>
             </form>
@@ -103,10 +131,52 @@ const ProfilePage = ({ activeTab }: ProfileProps) => {
       )}
 
       {activeTab === 2 && (
-        <div>
+        <div className="relative">
+          <Modal
+            title="Criar nova live"
+            isOpen={openModal}
+            onClose={closeModal}
+            className="absolute max-w-screen-md left-1/2 transform -translate-x-1/2 z-10"
+          >
+            <form className="p-4">
+              <div className="mb-4">
+                <label htmlFor="title" className="text-black font-medium mb-2">
+                  Título
+                </label>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  className="input-auth"
+                  placeholder="Título"
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="description"
+                  className="text-black font-medium mb-2"
+                >
+                  Descrição
+                </label>
+                <textarea
+                  id="description"
+                  name="description"
+                  className="input-auth"
+                  placeholder="Descrição (opcional)"
+                ></textarea>
+              </div>
+              <div className="flex justify-end">
+                <button type="submit" className="btn btn-secondary">
+                  Criar
+                </button>
+              </div>
+            </form>
+          </Modal>
+
           <button
             type="button"
             className="flex gap-3 items-center btn border-2 border-accent mb-8"
+            onClick={() => setOpenModal(true)}
           >
             <span className="text-xl">Iniciar Live</span>
             <RiVideoAddFill className="text-accent text-3xl" />
@@ -115,7 +185,7 @@ const ProfilePage = ({ activeTab }: ProfileProps) => {
           <section>
             <h2 className="mb-8">Lives passadas</h2>
 
-            <VideosThumb />
+            <VideosThumb videos={videos} />
           </section>
         </div>
       )}
@@ -124,7 +194,8 @@ const ProfilePage = ({ activeTab }: ProfileProps) => {
 };
 
 const mapStateToProps = (state: PagesMapState) => ({
-  activeTab: state.tab.activeTab
+  videos: state.videos.data,
+  user: state.user.data
 });
 
 export default connect(mapStateToProps)(ProfilePage);

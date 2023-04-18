@@ -1,9 +1,5 @@
-export enum tabActions {
-  SET_CURRENT_TAB = 'SET_CURRENT_TAB'
-}
-
-export type TabState = {
-  readonly activeTab: number;
+export type LivesState = {
+  readonly data: Videos[];
 };
 
 export type VideosState = {
@@ -21,11 +17,34 @@ export type Videos = {
   channel_img: string;
 };
 
-export type PagesMapState = {
-  tab: {
-    readonly activeTab: number;
+export type UserState = {
+  readonly data: User;
+};
+
+export type User = {
+  id: number;
+  name: string;
+  last_name: string;
+  img: string;
+  my_channel: {
+    name: string;
+    followers: number;
+    videos: Videos[];
   };
+  following: {
+    channels: [{ name: string; img: string }];
+    videos: Videos[];
+  };
+};
+
+export type PagesMapState = {
   videos: {
     readonly data: Videos[];
+  };
+  lives: {
+    readonly data: Videos[];
+  };
+  user: {
+    readonly data: User;
   };
 };
