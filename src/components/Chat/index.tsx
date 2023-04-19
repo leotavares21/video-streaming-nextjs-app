@@ -15,6 +15,7 @@ type Message = {
 
 type ChatProps = {
   username: string;
+  className?: string;
 };
 
 type EmojiData = {
@@ -26,7 +27,7 @@ type EmojiData = {
   unified: string;
 };
 
-export default function Chat({ username }: ChatProps) {
+export default function Chat({ username, className }: ChatProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState('');
   const [socket, setSocket] = useState<Socket>();
@@ -69,13 +70,13 @@ export default function Chat({ username }: ChatProps) {
   }
 
   return (
-    <div className="w-1/3 h-[35rem] border border-gray-500 rounded-xl relative">
+    <div className={`${className} border border-gray-500 rounded-xl relative`}>
       <h3 className="flex justify-center items-center p-2 border-b border-gray-500">
         Chat da Live
       </h3>
       <div className="h-[26rem] px-4 mb-4 overflow-y-auto scroll-chat border-b border-gray-500 ">
         {messages.length === 0 && (
-          <span className="text-gray">Escreva sua mensagem...</span>
+          <span className="text-gray-200">Escreva sua mensagem...</span>
         )}
         {messages.map((message) => (
           <div
@@ -89,7 +90,7 @@ export default function Chat({ username }: ChatProps) {
             />
 
             <p>
-              <span className="font-medium text-gray whitespace-nowrap mr-2">
+              <span className="font-medium text-gray-200 whitespace-nowrap mr-2">
                 {message.author}
               </span>
               {message.text}

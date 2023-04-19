@@ -10,7 +10,7 @@ function Tab({ children, activeTab, tabNumber, handleTab }: TabProps) {
     <button
       onClick={handleTab}
       className={`flex items-center gap-2 text-xl py-2 pr-4 hover:brightness-90 ${
-        activeTab === tabNumber ? 'text-secondary' : 'text-gray'
+        activeTab === tabNumber ? 'text-secondary' : 'text-gray-200'
       }`}
       data-testid={`tab-button${tabNumber}`}
     >

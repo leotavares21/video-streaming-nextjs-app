@@ -6,14 +6,13 @@ import Modal from 'components/Modal';
 import Tab from 'components/Tab';
 import VideosThumb from 'components/VideosThumb';
 
-import { PagesMapState, User, Videos } from 'store/types';
+import { PagesMapState, User } from 'store/types';
 
 type ProfilePageProps = {
-  videos: Videos[];
   user: User;
 };
 
-const ProfilePage = ({ videos, user }: ProfilePageProps) => {
+const ProfilePage = ({ user }: ProfilePageProps) => {
   const [activeTab, setActiveTab] = useState(1);
   const [openModal, setOpenModal] = useState(false);
 
@@ -57,7 +56,7 @@ const ProfilePage = ({ videos, user }: ProfilePageProps) => {
                 <span className="text-xl font-medium mb-4">{`${user.name} ${user.last_name}`}</span>
                 <div className="flex justify-center gap-4">
                   <span>59 videos</span>
-                  <span className="border-gray px-4 border-r-2 border-l-2">
+                  <span className="border-gray-200 px-4 border-r-2 border-l-2">
                     12 mil inscritos
                   </span>
                   <span>21 inscrições</span>
@@ -68,9 +67,9 @@ const ProfilePage = ({ videos, user }: ProfilePageProps) => {
             <button className="btn btn-secondary mt-8">Atualizar foto</button>
           </div>
 
-          <div className="lg:w-2/3 w-full lg:pl-24 pl-0 lg:border-l-2 lg:border-l-gray border-l-0">
+          <div className="lg:w-2/3 w-full lg:pl-24 pl-0 lg:border-l-2 lg:border-l-gray-200 border-l-0">
             <form action="" className="w-full">
-              <div className="flex sm:flex-row flex-col sm:justify-between items-center gap-4 border-b-2 border-gray mb-8">
+              <div className="flex sm:flex-row flex-col sm:justify-between items-center gap-4 border-b-2 border-gray-200 mb-8">
                 <h2>Informações básicas</h2>
                 <div className="flex gap-4 mb-4">
                   <button className="btn border-2 border-secondary">
@@ -132,11 +131,20 @@ const ProfilePage = ({ videos, user }: ProfilePageProps) => {
 
       {activeTab === 2 && (
         <div className="relative">
+          <button
+            type="button"
+            className="flex gap-3 items-center btn border-2 border-accent mb-8"
+            onClick={() => setOpenModal(true)}
+          >
+            <span className="text-xl">Iniciar Live</span>
+            <RiVideoAddFill className="text-accent text-3xl" />
+          </button>
+
           <Modal
             title="Criar nova live"
             isOpen={openModal}
             onClose={closeModal}
-            className="absolute max-w-screen-md left-1/2 transform -translate-x-1/2 z-10"
+            className="absolute top-1/2 -translate-y-1/2 max-w-screen-md left-1/2 transform -translate-x-1/2 z-10"
           >
             <form className="p-4">
               <div className="mb-4">
@@ -173,19 +181,10 @@ const ProfilePage = ({ videos, user }: ProfilePageProps) => {
             </form>
           </Modal>
 
-          <button
-            type="button"
-            className="flex gap-3 items-center btn border-2 border-accent mb-8"
-            onClick={() => setOpenModal(true)}
-          >
-            <span className="text-xl">Iniciar Live</span>
-            <RiVideoAddFill className="text-accent text-3xl" />
-          </button>
-
           <section>
             <h2 className="mb-8">Lives passadas</h2>
 
-            <VideosThumb videos={videos} />
+            <VideosThumb videos={user.my_channel.videos} />
           </section>
         </div>
       )}
@@ -194,7 +193,6 @@ const ProfilePage = ({ videos, user }: ProfilePageProps) => {
 };
 
 const mapStateToProps = (state: PagesMapState) => ({
-  videos: state.videos.data,
   user: state.user.data
 });
 

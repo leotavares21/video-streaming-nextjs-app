@@ -68,6 +68,6 @@
   }
 
   .scroll-chat::-webkit-scrollbar-thumb {
-    @apply bg-gray rounded-xl; /* cor da barra de rolagem */
+    @apply bg-gray-200 rounded-xl; /* cor da barra de rolagem */
   }
 }

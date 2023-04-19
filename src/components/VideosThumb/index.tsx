@@ -16,7 +16,7 @@ function VideosThumb({ videos, testid }: VideosThumbProps) {
     >
       {videos.map((video) => (
         <Link
-          href="username/video/123"
+          href="/username/video/123"
           key={video.id}
           className="relative h-60"
         >

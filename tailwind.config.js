@@ -47,8 +47,8 @@ module.exports = {
         white: '#FBFBFF',
         black: '#000',
         accent: '#FF2060',
-        gray: '#C2C3CC',
         'gray-100': '#f1f1f1',
+        'gray-200': '#C2C3CC',
         'gray-300': '#888',
         'gray-500': '#555'
       }

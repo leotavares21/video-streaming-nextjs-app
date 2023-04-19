@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 interface ClientOnlyProps {
   children: React.ReactNode;
-  className: string;
+  className?: string;
 }
 
 export default function ClientOnly({

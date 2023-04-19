@@ -9,7 +9,7 @@ type LayoutProps = {
 function Layout({ children }: LayoutProps) {
   const router = useRouter();
 
-  // verifica se a rota é a página de login ou registro
+  //Check if the route is the login or registration page.
   const hideNavbar =
     router.pathname === '/auth/sign-in' || router.pathname === '/auth/register';
 
