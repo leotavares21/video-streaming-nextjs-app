@@ -2,11 +2,11 @@ import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { FaRegUserCircle } from 'react-icons/fa';
-import { IoVideocam } from 'react-icons/io5';
 import { connect } from 'react-redux';
 
-import { useClickInOut } from 'hooks';
+import { useClickInOut } from 'hooks/useClickInOut';
 
+import Logo from 'components/Logo';
 import Search from 'components/Search';
 
 import { PagesMapState, User } from 'store/types';
@@ -29,10 +29,7 @@ function NavBar({ user }: NavBarProps) {
 
   return (
     <header className="container mx-auto px-4 max-w-screen-xl flex items-center gap-2 justify-between h-20 mb-8 sticky z-50">
-      <Link href="/" className="md:w-1/3 sm:w-2/10">
-        <IoVideocam className="text-secondary text-[2rem]" />
-        <span className="font-medium">Início</span>
-      </Link>
+      <Logo />
 
       <Search className="md:w-1/2 sm:w-6/10" />
 

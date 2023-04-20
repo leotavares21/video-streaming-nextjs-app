@@ -37,7 +37,7 @@ export type User = {
     videos: Videos[];
   };
   following: {
-    channels: [{ name: string; img: string }];
+    channels: { name: string; img: string; slug: string }[];
     videos: Videos[];
   };
 };

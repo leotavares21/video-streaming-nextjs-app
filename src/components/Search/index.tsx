@@ -1,19 +1,19 @@
 import { useState, useRef } from 'react';
 import { FiSearch } from 'react-icons/fi';
 
-import { useClickInOut } from 'hooks';
+import { useClickInOut } from 'hooks/useClickInOut';
 
 type SearchProps = {
   className?: string;
 };
 
 export default function Search({ className }: SearchProps) {
-  const [isSearching, setIsSearching] = useState(false);
+  const [isVisible, setisVisible] = useState(false);
   const containerRef = useRef<HTMLFormElement>(null);
   const toggleRef = useRef<HTMLInputElement>(null);
 
   function handleClickOutside() {
-    setIsSearching(false);
+    setisVisible(false);
   }
 
   useClickInOut(containerRef, toggleRef, handleClickOutside);
@@ -21,7 +21,7 @@ export default function Search({ className }: SearchProps) {
   return (
     <form
       className={`${className} flex items-center justify-center relative`}
-      onClick={() => setIsSearching(true)}
+      onClick={() => setisVisible(true)}
       ref={containerRef}
     >
       <FiSearch className="text-black absolute left-3 cursor-pointer text-xl" />
@@ -32,7 +32,7 @@ export default function Search({ className }: SearchProps) {
         ref={toggleRef}
       />
 
-      {isSearching && (
+      {isVisible && (
         <div className="bg-white w-full min-h-[8rem] absolute top-full mt-2 p-4 rounded-lg">
           <span className="text-black">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae

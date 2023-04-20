@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 
+import ChannelInfoCard from 'components/ChannelInfoCard';
 import VideoPlayer from 'components/VideoPlayer';
 import VideosThumb from 'components/VideosThumb';
 
@@ -18,21 +19,10 @@ function ChannelPage({ channel, status }: ChannelPageProps) {
 
   return (
     <>
-      <div className="flex items-center justify-between border-1 border-b border-gray-200 pb-4 mb-8">
-        <figure className="flex items-center gap-6">
-          <img
-            src="https://source.unsplash.com/random/200x200?person"
-            alt="person"
-            className="w-28 h-28 rounded-full border-4 border-secondary"
-          />
-          <figcaption className="text-xl font-medium">
-            {channel.name}
-          </figcaption>
-          <span className="text-gray-200">12 mil inscritos</span>
-        </figure>
-
-        <button className="btn border-2 border-accent">Inscrever-se</button>
-      </div>
+      <ChannelInfoCard
+        className="border-1 border-b border-gray-200 pb-4 mb-8"
+        channel={channel}
+      />
 
       {status.live && (
         <section className="mb-8">

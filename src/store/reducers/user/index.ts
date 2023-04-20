@@ -47,8 +47,29 @@ const initial_state: UserState = {
     following: {
       channels: [
         {
-          name: 'wild life',
-          img: 'https://source.unsplash.com/random/200x200?lyon'
+          name: 'channel 1',
+          img: 'https://source.unsplash.com/random/200x200?lyon',
+          slug: 'channel1'
+        },
+        {
+          name: 'channel 2',
+          img: 'https://source.unsplash.com/random/200x200?eagle',
+          slug: 'channel2'
+        },
+        {
+          name: 'channel 3',
+          img: 'https://source.unsplash.com/random/200x200?game',
+          slug: 'channel3'
+        },
+        {
+          name: 'channel 4',
+          img: 'https://source.unsplash.com/random/200x200?sport',
+          slug: 'channel4'
+        },
+        {
+          name: 'channel 5',
+          img: 'https://source.unsplash.com/random/200x200?tech',
+          slug: 'channel5'
         }
       ],
       videos: [

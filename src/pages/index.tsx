@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { connect } from 'react-redux';
 
+import ChannelPreview from 'components/ChannelPreview';
 import Tab from 'components/Tab';
 import VideosThumb from 'components/VideosThumb';
 
@@ -52,31 +52,10 @@ function HomePage({ lives, user }: HomeProps) {
         <VideosThumb videos={user.following.videos} testid="foryou-container" />
       )}
       {activeTab === 3 && (
-        <div
-          className="grid grid-cols-5 gap-4"
+        <ChannelPreview
+          channels={user.following.channels}
           data-testid="following-container"
-        >
-          {lives.map((live) => (
-            <div
-              className="flex items-center justify-between mb-2"
-              key={live.id}
-            >
-              <Link href="channel">
-                <figure className="flex justify-between items-center gap-4">
-                  <img
-                    src={live.channel_img}
-                    alt={live.channel}
-                    className="rounded-full w-20 h-20"
-                  />
-
-                  <figcaption className="text-gray-100 text-lg font-medium">
-                    {live.channel}
-                  </figcaption>
-                </figure>
-              </Link>
-            </div>
-          ))}
-        </div>
+        />
       )}
     </>
   );

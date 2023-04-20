@@ -1,13 +1,13 @@
 import { RefObject, useEffect } from 'react';
 
 export function useClickInOut(
-  elementRef: RefObject<HTMLElement>,
+  containerRef: RefObject<HTMLElement>,
   toggleRef: RefObject<HTMLElement>,
   handler: (event: MouseEvent | TouchEvent) => void
 ) {
   useEffect(() => {
     const listener = (event: MouseEvent | TouchEvent) => {
-      const el = elementRef?.current;
+      const el = containerRef?.current;
       const toggleBtn = toggleRef?.current;
 
       if (
@@ -26,5 +26,5 @@ export function useClickInOut(
       document.removeEventListener(`mousedown`, listener);
       document.removeEventListener(`touchstart`, listener);
     };
-  }, [elementRef, toggleRef, handler]);
+  }, [containerRef, toggleRef, handler]);
 }
