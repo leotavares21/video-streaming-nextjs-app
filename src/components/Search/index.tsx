@@ -1,49 +1,77 @@
-import { useState, useRef } from 'react';
+import Link from 'next/link';
+import { useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
+import { IoCloseCircle } from 'react-icons/io5';
+import { connect } from 'react-redux';
 
-import { useClickInOut } from 'hooks/useClickInOut';
+import { useClickOutside, useClickOutsideUtils } from 'hooks/useClickOutside';
+
+import ChannelPreview from 'components/ChannelPreview';
+
+import { PagesMapState, User } from 'store/types';
 
 type SearchProps = {
-  className?: string;
+  user: User;
 };
 
-export default function Search({ className }: SearchProps) {
-  const [isVisible, setisVisible] = useState(false);
-  const containerRef = useRef<HTMLFormElement>(null);
-  const toggleRef = useRef<HTMLInputElement>(null);
+function Search({ user }: SearchProps) {
+  const [searchTerm, setSearchTerm] = useState('');
 
-  function handleClickOutside() {
-    setisVisible(false);
-  }
+  const {
+    isVisible,
+    containerRef,
+    toggleRef,
+    handleClick,
+    handleClickOutside
+  } = useClickOutsideUtils();
 
-  useClickInOut(containerRef, toggleRef, handleClickOutside);
+  useClickOutside(containerRef, toggleRef, handleClickOutside);
 
   return (
     <form
-      className={`${className} flex items-center justify-center relative`}
-      onClick={() => setisVisible(true)}
+      className="flex items-center justify-center lg:w-1/3 w-1/2 relative"
+      onClick={() => handleClick(true)}
       ref={containerRef}
     >
-      <FiSearch className="text-black absolute left-3 cursor-pointer text-xl" />
+      <FiSearch className="text-black absolute left-3 text-xl" />
+
       <input
         type="text"
-        className="rounded-xl pl-10 pr-4 py-3 input-outline"
+        className="rounded-xl px-10 py-3 input-outline"
         placeholder="Buscar..."
+        value={searchTerm}
+        onChange={(event) => setSearchTerm(event.target.value)}
         ref={toggleRef}
       />
 
+      {searchTerm.length > 0 && (
+        <IoCloseCircle
+          onClick={() => setSearchTerm('')}
+          className="absolute right-[0.5rem] text-accent text-xl cursor-pointer hover:brightness-90"
+        />
+      )}
+
       {isVisible && (
-        <div className="bg-white w-full min-h-[8rem] absolute top-full mt-2 p-4 rounded-lg">
-          <span className="text-black">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
-            nemo ex esse aliquid ipsa sint maiores itaque magnam explicabo
-            consectetur fugit odit iusto, corrupti hic recusandae mollitia
-            quaerat in aperiam quam facilis qui dolores nisi necessitatibus?
-            Esse, illum, sint sapiente libero consectetur inventore quae
-            voluptate fuga quisquam, veniam ea dolorem.
-          </span>
+        <div className="bg-white w-full min-h-[6rem] h-[14rem] overflow-y-auto scroll-style top-full mt-[1.5px] p-4 rounded-lg absolute">
+          <Link
+            href="/channel/video/id"
+            className="flex items-center gap-4 mb-2 hover:bg-gray-100"
+          >
+            <div className="flex justify-center items-center w-10 h-10">
+              <FiSearch className="text-black text-xl" />
+            </div>
+            <span className="text-gray-500 text-lg">video name</span>
+          </Link>
+
+          <ChannelPreview channels={user.following.channels} type="search" />
         </div>
       )}
     </form>
   );
 }
+
+const mapStateToProps = (state: PagesMapState) => ({
+  user: state.user.data
+});
+
+export default connect(mapStateToProps)(Search);

@@ -1,94 +1,43 @@
-import { useEffect, useState, useRef } from 'react';
 import { BsEmojiLaughing } from 'react-icons/bs';
 import { MdSend } from 'react-icons/md';
-import { connect } from 'react-redux';
 
 import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
-import { useClickInOut } from 'hooks/useClickInOut';
-import io, { Socket } from 'socket.io-client';
+import { useChat } from 'hooks/useChat';
+import { useClickOutside, useClickOutsideUtils } from 'hooks/useClickOutside';
+import { useModal } from 'hooks/useModal';
 
+import Button from 'components/Button';
 import Modal from 'components/Modal';
-
-import { PagesMapState, User } from 'store/types';
-
-type Message = {
-  id: number;
-  author: string;
-  text: string;
-};
-
-type ChatProps = {
-  username: string;
-  user: User;
-  className?: string;
-};
 
 type EmojiData = {
   id: string;
-  keywords: string[];
-  name: string;
-  native?: string;
-  shortcodes: string;
+  native: string;
   unified: string;
 };
 
-function Chat({ username, user, className }: ChatProps) {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [newMessage, setNewMessage] = useState('');
-  const [socket, setSocket] = useState<Socket>();
-  const [showPicker, setShowPicker] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const toggleRef = useRef<HTMLButtonElement>(null);
+export default function Chat() {
+  const { openModal, setOpenModal, closeModal } = useModal();
 
-  useEffect(() => {
-    const newSocket = io('http://localhost:3000');
-    setSocket(newSocket);
+  const { user, messages, newMessage, setNewMessage, handleMessageSubmit } =
+    useChat();
 
-    return () => {
-      newSocket.disconnect();
-    };
-  }, []);
+  const {
+    isVisible,
+    containerRef,
+    toggleRef,
+    handleClick,
+    handleClickOutside
+  } = useClickOutsideUtils();
 
-  useEffect(() => {
-    if (socket) {
-      socket.on('chat message', (message: Message) => {
-        setMessages((prevMessages) => [...prevMessages, message]);
-      });
-    }
-  }, [socket]);
-
-  function handleMessageSubmit(event: React.FormEvent) {
-    event.preventDefault();
-    const message: Message = {
-      id: messages.length + 1,
-      author: username,
-      text: newMessage
-    };
-    setMessages([...messages, message]);
-    setNewMessage('');
-    if (socket) {
-      socket.emit('chat message', message);
-    }
-  }
-
-  function closeModal() {
-    setOpenModal(false);
-  }
-
-  function handleClickOutside() {
-    setShowPicker(false);
-  }
-
-  useClickInOut(containerRef, toggleRef, handleClickOutside);
+  useClickOutside(containerRef, toggleRef, handleClickOutside);
 
   return (
-    <div className={`${className} border border-gray-500 rounded-xl relative`}>
+    <div className="border border-gray-500 rounded-xl w-full h-full relative">
       <h3 className="flex justify-center items-center p-2 border-b border-gray-500">
         Chat da Live
       </h3>
-      <div className="h-[26rem] px-4 mb-4 overflow-y-auto scroll-chat border-b border-gray-500 ">
+      <div className="h-[26rem] px-4 mb-4 overflow-y-auto scroll-style border-b border-gray-500 ">
         {messages.length === 0 && (
           <span className="text-gray-200">Escreva sua mensagem...</span>
         )}
@@ -118,7 +67,7 @@ function Chat({ username, user, className }: ChatProps) {
           <div className="flex items-center justify-center px-4 w-full gap-4">
             <span>Entre para escrever no chat</span>
             <button
-              className="btn btn-secondary"
+              className="btn btn-primary"
               onClick={() => setOpenModal(true)}
             >
               Entrar
@@ -126,7 +75,7 @@ function Chat({ username, user, className }: ChatProps) {
           </div>
 
           <Modal
-            className="absolute bottom-0"
+            type="small"
             title="Entrar"
             isOpen={openModal}
             onClose={closeModal}
@@ -141,7 +90,8 @@ function Chat({ username, user, className }: ChatProps) {
                 placeholder="Senha"
                 className="input-auth"
               />
-              <button className="btn btn-secondary">entrar</button>
+
+              <Button type="submit">Entrar</Button>
             </form>
           </Modal>
         </>
@@ -149,7 +99,7 @@ function Chat({ username, user, className }: ChatProps) {
 
       {user && (
         <>
-          {showPicker && (
+          {isVisible && (
             <div
               className="absolute top-[3rem] right-[1rem] bottom-full"
               ref={containerRef}
@@ -159,7 +109,7 @@ function Chat({ username, user, className }: ChatProps) {
                 locale="pt"
                 data={data}
                 onEmojiSelect={(emoji: EmojiData) =>
-                  setNewMessage(newMessage + emoji?.native)
+                  setNewMessage(newMessage + emoji.native)
                 }
               />
             </div>
@@ -167,10 +117,10 @@ function Chat({ username, user, className }: ChatProps) {
 
           <button
             className="absolute bottom-[1.80rem] right-[3rem] p-2 hover:brightness-90"
-            onClick={() => setShowPicker(!showPicker)}
+            onClick={() => handleClick(!isVisible)}
             ref={toggleRef}
           >
-            <BsEmojiLaughing role="icon" aria-label="Smiling face" />
+            <BsEmojiLaughing role="menu" aria-label="carinha sorrindo" />
           </button>
 
           <form onSubmit={handleMessageSubmit} className="flex w-full px-4">
@@ -182,7 +132,7 @@ function Chat({ username, user, className }: ChatProps) {
               className="input-form input-outline mr-8"
             />
             <button type="submit" className="ml-2">
-              <MdSend className="text-secondary text-3xl hover:brightness-90" />
+              <MdSend className="text-primary text-3xl hover:brightness-90" />
             </button>
           </form>
         </>
@@ -190,9 +140,3 @@ function Chat({ username, user, className }: ChatProps) {
     </div>
   );
 }
-
-const mapStateToProps = (state: PagesMapState) => ({
-  user: state.user.data
-});
-
-export default connect(mapStateToProps)(Chat);

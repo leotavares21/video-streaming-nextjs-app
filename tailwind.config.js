@@ -41,8 +41,8 @@ module.exports = {
         '3xl': '2rem'
       },
       colors: {
-        primary: '#191A32',
-        secondary: '#33CEF6',
+        primary: '#33CEF6',
+        secondary: '#191A32',
         tertiary: '#33B0F6',
         white: '#FBFBFF',
         black: '#000',
@@ -54,5 +54,5 @@ module.exports = {
       }
     }
   },
-  plugins: []
+  plugins: [require('tailwind-scrollbar')]
 };

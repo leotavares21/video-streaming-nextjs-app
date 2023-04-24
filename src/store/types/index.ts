@@ -45,6 +45,7 @@ export type User = {
 export type Channel = {
   id: number;
   name: string;
+  slug: string;
   channel_img: string;
   followers: number;
   videos: Videos[];

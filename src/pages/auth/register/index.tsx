@@ -18,7 +18,7 @@ function RegisterPage() {
 
             <Link
               href="/auth/sign-in"
-              className="btn btn-secondary text-center w-full"
+              className="btn btn-primary text-center w-full"
             >
               Logar conta
             </Link>

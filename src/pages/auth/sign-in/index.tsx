@@ -50,7 +50,7 @@ const SignInPage = () => {
 
             <Link
               href="/auth/register"
-              className="btn btn-secondary text-center w-full mt-4"
+              className="btn btn-primary text-center w-full mt-4"
             >
               Criar conta
             </Link>

@@ -1,6 +1,6 @@
-import { RefObject, useEffect } from 'react';
+import { RefObject, useEffect, useRef, useState } from 'react';
 
-export function useClickInOut(
+export function useClickOutside(
   containerRef: RefObject<HTMLElement>,
   toggleRef: RefObject<HTMLElement>,
   handler: (event: MouseEvent | TouchEvent) => void
@@ -27,4 +27,27 @@ export function useClickInOut(
       document.removeEventListener(`touchstart`, listener);
     };
   }, [containerRef, toggleRef, handler]);
+}
+
+export function useClickOutsideUtils() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const containerRef = useRef(null);
+  const toggleRef = useRef(null);
+
+  function handleClickOutside() {
+    setIsVisible(false);
+  }
+
+  function handleClick(isVisible: boolean) {
+    setIsVisible(isVisible);
+  }
+
+  return {
+    containerRef,
+    toggleRef,
+    isVisible,
+    handleClick,
+    handleClickOutside
+  };
 }

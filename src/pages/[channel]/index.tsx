@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import ChannelInfoCard from 'components/ChannelInfoCard';
+import ChannelCard from 'components/ChannelCard';
 import VideoPlayer from 'components/VideoPlayer';
 import VideosThumb from 'components/VideosThumb';
 
@@ -13,19 +13,16 @@ type ChannelPageProps = {
 
 function ChannelPage({ channel, status }: ChannelPageProps) {
   // Check if the channel is live and filter by the first video in the list
-  const channelFilter = status.live
+  const channelFiltered = status.live
     ? channel.videos.filter((video, index) => index > 0)
     : channel.videos;
 
   return (
     <>
-      <ChannelInfoCard
-        className="border-1 border-b border-gray-200 pb-4 mb-8"
-        channel={channel}
-      />
+      <ChannelCard channel={channel} />
 
       {status.live && (
-        <section className="mb-8">
+        <section className="mb-8 pt-4 border-gray-500 border-t">
           <span className="bg-accent uppercase inline-block font-medium px-4 py-2 mb-4 rounded-lg">
             Ao Vivo
           </span>
@@ -33,9 +30,9 @@ function ChannelPage({ channel, status }: ChannelPageProps) {
         </section>
       )}
 
-      <section className="mb-8">
+      <section className="mb-8 pt-4 border-gray-500 border-t">
         <h2>Videos</h2>
-        <VideosThumb videos={channelFilter} />
+        <VideosThumb videos={channelFiltered} />
       </section>
     </>
   );

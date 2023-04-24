@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
 import { RiVideoAddFill } from 'react-icons/ri';
 import { connect } from 'react-redux';
 
+import { useModal } from 'hooks/useModal';
+import { useTabClick } from 'hooks/useTabClick';
+
+import Button from 'components/Button';
 import Modal from 'components/Modal';
 import Tab from 'components/Tab';
 import VideosThumb from 'components/VideosThumb';
@@ -13,16 +16,9 @@ type ProfilePageProps = {
 };
 
 const ProfilePage = ({ user }: ProfilePageProps) => {
-  const [activeTab, setActiveTab] = useState(1);
-  const [openModal, setOpenModal] = useState(false);
+  const { activeTab, handleTabClick } = useTabClick();
+  const { openModal, setOpenModal, closeModal } = useModal();
 
-  function handleTabClick(tab: number) {
-    setActiveTab(tab);
-  }
-
-  function closeModal() {
-    setOpenModal(false);
-  }
   return (
     <div className="flex flex-col">
       <h1 className="flex lg:justify-start justify-center">Configuração</h1>
@@ -46,11 +42,11 @@ const ProfilePage = ({ user }: ProfilePageProps) => {
       {activeTab === 1 && (
         <div className="flex flex-col items-center lg:items-start lg:flex-row">
           <div className="lg:w-1/3 w-full flex flex-col items-center mb-20 lg:mb-0">
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center mb-8">
               <img
                 src={user.img}
                 alt="person"
-                className="w-36 h-36 rounded-full  border-4 border-secondary mb-4"
+                className="w-36 h-36 rounded-full  border-4 border-primary mb-4"
               />
               <div className="flex flex-col items-center">
                 <span className="text-xl font-medium mb-4">{`${user.name} ${user.last_name}`}</span>
@@ -63,8 +59,7 @@ const ProfilePage = ({ user }: ProfilePageProps) => {
                 </div>
               </div>
             </div>
-
-            <button className="btn btn-secondary mt-8">Atualizar foto</button>
+            <Button>Atualizar foto</Button>
           </div>
 
           <div className="lg:w-2/3 w-full lg:pl-24 pl-0 lg:border-l-2 lg:border-l-gray-200 border-l-0">
@@ -72,10 +67,11 @@ const ProfilePage = ({ user }: ProfilePageProps) => {
               <div className="flex sm:flex-row flex-col sm:justify-between items-center gap-4 border-b-2 border-gray-200 mb-8">
                 <h2>Informações básicas</h2>
                 <div className="flex gap-4 mb-4">
-                  <button className="btn border-2 border-secondary">
-                    Cancel
-                  </button>
-                  <button className="btn btn-secondary">Save</button>
+                  <Button variant="accent" type="reset">
+                    Cancelar
+                  </Button>
+
+                  <Button type="submit">Confirmar</Button>
                 </div>
               </div>
 
@@ -131,20 +127,15 @@ const ProfilePage = ({ user }: ProfilePageProps) => {
 
       {activeTab === 2 && (
         <div className="relative">
-          <button
-            type="button"
-            className="flex gap-3 items-center btn border-2 border-accent mb-8"
-            onClick={() => setOpenModal(true)}
-          >
+          <Button variant="accent" onClick={() => setOpenModal(true)}>
             <span className="text-xl">Iniciar Live</span>
             <RiVideoAddFill className="text-accent text-3xl" />
-          </button>
+          </Button>
 
           <Modal
             title="Criar nova live"
             isOpen={openModal}
             onClose={closeModal}
-            className="absolute top-1/2 -translate-y-1/2 max-w-screen-md left-1/2 transform -translate-x-1/2 z-10"
           >
             <form className="p-4">
               <div className="mb-4">
@@ -171,18 +162,16 @@ const ProfilePage = ({ user }: ProfilePageProps) => {
                   name="description"
                   className="input-auth"
                   placeholder="Descrição (opcional)"
-                ></textarea>
+                />
               </div>
               <div className="flex justify-end">
-                <button type="submit" className="btn btn-secondary">
-                  Criar
-                </button>
+                <Button type="submit">Criar</Button>
               </div>
             </form>
           </Modal>
 
           <section>
-            <h2 className="mb-8">Lives passadas</h2>
+            <h2 className="my-8">Lives passadas</h2>
 
             <VideosThumb videos={user.my_channel.videos} />
           </section>

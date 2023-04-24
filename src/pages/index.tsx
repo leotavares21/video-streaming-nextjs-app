@@ -1,5 +1,6 @@
-import { useState } from 'react';
 import { connect } from 'react-redux';
+
+import { useTabClick } from 'hooks/useTabClick';
 
 import ChannelPreview from 'components/ChannelPreview';
 import Tab from 'components/Tab';
@@ -13,11 +14,7 @@ type HomeProps = {
 };
 
 function HomePage({ lives, user }: HomeProps) {
-  const [activeTab, setActiveTab] = useState(1);
-
-  function handleTabClick(tab: number) {
-    setActiveTab(tab);
-  }
+  const { activeTab, handleTabClick } = useTabClick();
 
   return (
     <>
@@ -45,18 +42,9 @@ function HomePage({ lives, user }: HomeProps) {
           Seguindo
         </Tab>
       </div>
-      {activeTab === 1 && (
-        <VideosThumb videos={lives} testid="lives-container" />
-      )}
-      {activeTab === 2 && (
-        <VideosThumb videos={user.following.videos} testid="foryou-container" />
-      )}
-      {activeTab === 3 && (
-        <ChannelPreview
-          channels={user.following.channels}
-          data-testid="following-container"
-        />
-      )}
+      {activeTab === 1 && <VideosThumb videos={lives} />}
+      {activeTab === 2 && <VideosThumb videos={user.following.videos} />}
+      {activeTab === 3 && <ChannelPreview channels={user.following.channels} />}
     </>
   );
 }

@@ -9,6 +9,7 @@ const initial_state: ChannelState = {
   data: {
     id: 1234,
     name: 'User`s Channel',
+    slug: 'userschannel',
     channel_img: 'https://source.unsplash.com/random/200x200?art',
     followers: 8456,
     videos: [
