@@ -14,7 +14,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "lint-staged": {
@@ -28,6 +29,7 @@
     "@emoji-mart/react": "^1.1.1",
     "@reduxjs/toolkit": "^1.9.3",
     "autoprefixer": "10.4.14",
+    "clsx": "^1.2.1",
     "emoji-mart": "^5.5.2",
     "next": "13.3.0",
     "postcss": "8.4.21",
@@ -43,6 +45,7 @@
     "tailwindcss": "3.3.1"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^17.6.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@types/cypress": "^1.1.3",

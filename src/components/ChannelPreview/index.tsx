@@ -1,7 +1,11 @@
 import Link from 'next/link';
 
+import { Channel } from 'store/types';
+
+import { ChannelPreviewFigure } from './ChannelPreviewComponents';
+
 type ChannelPreviewProps = {
-  channels: { name: string; img: string; slug: string }[];
+  channels: Channel[];
   type?: 'search';
 };
 export default function ChannelPreview({
@@ -10,16 +14,16 @@ export default function ChannelPreview({
 }: ChannelPreviewProps) {
   if (type === 'search') {
     return (
-      <div className="text-black" data-testid="channel-preview">
-        {channels.map((channel, index) => (
+      <>
+        {channels.map((channel) => (
           <Link
             href={`/${channel.slug}`}
             className="flex mb-2 p-1 hover:bg-gray-100"
-            key={index}
+            key={channel.id}
           >
-            <figure className="flex justify-between items-center gap-4">
+            <ChannelPreviewFigure>
               <img
-                src={channel.img}
+                src={channel.channel_img}
                 alt={channel.name}
                 className="rounded-full w-10 h-10"
               />
@@ -27,19 +31,23 @@ export default function ChannelPreview({
               <figcaption className="text-gray-500 text-lg">
                 {channel.name}
               </figcaption>
-            </figure>
+            </ChannelPreviewFigure>
           </Link>
         ))}
-      </div>
+      </>
     );
   }
   return (
-    <div className="flex flex-wrap gap-24" data-testid="channel-preview">
-      {channels.map((channel, index) => (
-        <Link href={`/${channel.slug}`} className="flex mb-2" key={index}>
-          <figure className="flex justify-between items-center gap-4">
+    <div className="flex flex-wrap md:justify-between md:gap-4 gap-12">
+      {channels.map((channel) => (
+        <Link
+          href={`/${channel.slug}`}
+          className="flex mb-2 p-2 rounded-xl bg-gray-500 bg-opacity-25 hover:bg-gray-700 hover:bg-opacity-50"
+          key={channel.id}
+        >
+          <ChannelPreviewFigure>
             <img
-              src={channel.img}
+              src={channel.channel_img}
               alt={channel.name}
               className="rounded-full w-20 h-20"
             />
@@ -47,7 +55,7 @@ export default function ChannelPreview({
             <figcaption className="text-gray-100 text-lg font-medium">
               {channel.name}
             </figcaption>
-          </figure>
+          </ChannelPreviewFigure>
         </Link>
       ))}
     </div>

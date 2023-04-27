@@ -7,7 +7,7 @@ import { handleStyleButton } from './utils';
 type ButtonProps = {
   variant?: 'primary' | 'accent' | 'gray';
   type?: 'button' | 'submit' | 'reset';
-  href?: string | UrlObject;
+  href?: UrlObject | string;
   onClick?: () => void;
   children: React.ReactNode;
 };

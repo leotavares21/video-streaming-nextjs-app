@@ -47,28 +47,33 @@ const initial_state: UserState = {
     following: {
       channels: [
         {
+          id: 1,
           name: 'channel 1',
-          img: 'https://source.unsplash.com/random/200x200?lyon',
+          channel_img: 'https://source.unsplash.com/random/200x200?lyon',
           slug: 'channel1'
         },
         {
+          id: 2,
           name: 'channel 2',
-          img: 'https://source.unsplash.com/random/200x200?eagle',
+          channel_img: 'https://source.unsplash.com/random/200x200?eagle',
           slug: 'channel2'
         },
         {
+          id: 3,
           name: 'channel 3',
-          img: 'https://source.unsplash.com/random/200x200?game',
+          channel_img: 'https://source.unsplash.com/random/200x200?game',
           slug: 'channel3'
         },
         {
+          id: 4,
           name: 'channel 4',
-          img: 'https://source.unsplash.com/random/200x200?sport',
+          channel_img: 'https://source.unsplash.com/random/200x200?sport',
           slug: 'channel4'
         },
         {
+          id: 5,
           name: 'channel 5',
-          img: 'https://source.unsplash.com/random/200x200?tech',
+          channel_img: 'https://source.unsplash.com/random/200x200?tech',
           slug: 'channel5'
         }
       ],

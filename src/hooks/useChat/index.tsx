@@ -5,9 +5,10 @@ import io, { Socket } from 'socket.io-client';
 
 import { PagesMapState } from 'store/types';
 
-type Message = {
+export type Message = {
   id: number;
   author: string;
+  author_img: string;
   text: string;
 };
 
@@ -38,7 +39,8 @@ export function useChat() {
     event.preventDefault();
     const message: Message = {
       id: messages.length + 1,
-      author: user.name,
+      author: `${user.name} ${user.last_name}`,
+      author_img: user.img,
       text: newMessage
     };
     setMessages([...messages, message]);

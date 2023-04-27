@@ -31,7 +31,7 @@ module.exports = {
     extend: {
       screens: {
         sm: '480px',
-        md: '768px',
+        md: '840px',
         lg: '976px',
         xl: '1440px'
       },
@@ -47,10 +47,13 @@ module.exports = {
         white: '#FBFBFF',
         black: '#000',
         accent: '#FF2060',
-        'gray-100': '#f1f1f1',
-        'gray-200': '#C2C3CC',
-        'gray-300': '#888',
-        'gray-500': '#555'
+        gray: {
+          100: '#f1f1f1',
+          200: '#C2C3CC',
+          300: '#888',
+          500: '#555',
+          700: '#333'
+        }
       }
     }
   },

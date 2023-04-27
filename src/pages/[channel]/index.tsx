@@ -19,7 +19,7 @@ function ChannelPage({ channel, status }: ChannelPageProps) {
 
   return (
     <>
-      <ChannelCard channel={channel} />
+      <ChannelCard type="subscribe" channel={channel} />
 
       {status.live && (
         <section className="mb-8 pt-4 border-gray-500 border-t">

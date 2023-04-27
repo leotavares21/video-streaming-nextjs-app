@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
+@layer base {
   body {
     @apply bg-secondary text-white scroll-smooth;
   }
@@ -33,7 +33,9 @@
   textarea {
     @apply text-black bg-white placeholder-gray-300;
   }
+}
 
+@layer components {
   .btn {
     @apply flex items-center gap-2 px-6 py-3 font-medium rounded-3xl text-white hover:brightness-90;
   }

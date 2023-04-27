@@ -37,7 +37,7 @@ export type User = {
     videos: Videos[];
   };
   following: {
-    channels: { name: string; img: string; slug: string }[];
+    channels: Channel[];
     videos: Videos[];
   };
 };
@@ -47,8 +47,8 @@ export type Channel = {
   name: string;
   slug: string;
   channel_img: string;
-  followers: number;
-  videos: Videos[];
+  followers?: number;
+  videos?: Videos[];
 };
 
 export type Channel_Status = {

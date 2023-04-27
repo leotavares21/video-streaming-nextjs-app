@@ -29,7 +29,7 @@ function Search({ user }: SearchProps) {
 
   return (
     <form
-      className="flex items-center justify-center lg:w-1/3 w-1/2 relative"
+      className="flex items-center justify-center lg:w-2/5 w-1/2 relative"
       onClick={() => handleClick(true)}
       ref={containerRef}
     >

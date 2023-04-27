@@ -37,7 +37,9 @@ function Profile({ user }: ProfileProps) {
             alt={user.name}
             className="rounded-full w-12 h-12 object-cover"
           />
-          <span className="font-medium">{user.name}</span>
+          <span className="font-medium">
+            {user.name} {user.last_name}
+          </span>
         </Link>
 
         <div

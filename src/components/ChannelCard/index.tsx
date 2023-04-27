@@ -1,63 +1,44 @@
-import Link from 'next/link';
 import { SiCashapp } from 'react-icons/si';
 
 import Button from 'components/Button';
 
+import { Channel } from 'store/types';
+
+import { Card, CardContainer, ButtonGroup } from './ChannelCardComponents';
+
 type ChannelCardProps = {
-  channel: {
-    name: string;
-    slug: string;
-    channel_img: string;
-    followers: number;
-  };
-  type?: 'full';
+  channel: Channel;
+  type?: 'full' | 'subscribe';
 };
 
 export default function ChannelCard({ channel, type }: ChannelCardProps) {
   if (type === 'full') {
     return (
-      <div className="flex items-center justify-between my-4 gap-2">
-        <figure className="flex items-center gap-6">
-          <Link href={`/${channel.slug}`} className="flex items-center gap-6">
-            <img
-              src={channel.channel_img}
-              alt={channel.name}
-              className="w-20 h-20 rounded-full border-4 border-primary"
-            />
-            <figcaption className="text-xl font-medium">
-              {channel.name}
-            </figcaption>
-          </Link>
-          <span className="text-gray-200">{channel.followers} inscritos</span>
-        </figure>
+      <CardContainer>
+        <Card imgSize="w-20 h-20" channel={channel} />
 
-        <div className="flex gap-4">
+        <ButtonGroup>
           <Button variant="gray">
             <SiCashapp className="text-xl" />
             <span>Apoiar</span>
           </Button>
           <Button variant="accent">Seguir</Button>
-        </div>
-      </div>
+        </ButtonGroup>
+      </CardContainer>
+    );
+  }
+  if (type === 'subscribe') {
+    return (
+      <CardContainer>
+        <Card imgSize="w-24 h-24" channel={channel} />
+
+        <Button variant="accent">Inscrever-se</Button>
+      </CardContainer>
     );
   }
   return (
-    <div className="flex items-center justify-between mb-4 gap-2">
-      <figure className="flex items-center gap-6">
-        <Link href={`/${channel.slug}`} className="flex items-center gap-6">
-          <img
-            src={channel.channel_img}
-            alt={channel.name}
-            className="w-24 h-24 rounded-full border-4 border-primary"
-          />
-          <figcaption className="text-xl font-medium">
-            {channel.name}
-          </figcaption>
-        </Link>
-        <span className="text-gray-200">{channel.followers} inscritos</span>
-      </figure>
-
-      <Button variant="accent">Inscrever-se</Button>
-    </div>
+    <CardContainer>
+      <Card imgSize="w-20 h-20" channel={channel} />;
+    </CardContainer>
   );
 }
