@@ -5,10 +5,7 @@ interface ClientOnlyProps {
   className?: string;
 }
 
-export default function ClientOnly({
-  children,
-  ...delegated
-}: ClientOnlyProps) {
+export function ClientOnly({ children, ...delegated }: ClientOnlyProps) {
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {

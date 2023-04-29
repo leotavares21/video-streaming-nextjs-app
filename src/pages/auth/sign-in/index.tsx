@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import Layout from 'components/Layout';
+import { Layout } from 'components/Layout';
 
 const SignInPage = () => {
   const router = useRouter();

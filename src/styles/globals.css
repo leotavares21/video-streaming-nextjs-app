@@ -63,4 +63,5 @@
   .scroll-style {
     @apply scrollbar scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200;
   }
+
 }
