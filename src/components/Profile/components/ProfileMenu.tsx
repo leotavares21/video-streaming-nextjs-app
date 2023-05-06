@@ -7,9 +7,9 @@ type ProfileMenuProps = {
 export function ProfileMenu({ isVisible }: ProfileMenuProps) {
   if (isVisible) {
     return (
-      <div className="bg-white px-2 py-2 absolute top-full mt-1 flex flex-col gap-2 w-full rounded-md ">
+      <div className="bg-gray-50 px-2 py-2 absolute top-full mt-1 flex flex-col gap-2 w-full rounded-md ">
         <Link
-          href="/settings/profile"
+          href="/settings/Profile"
           className="text-gray-300 hover:text-black"
         >
           Configurações

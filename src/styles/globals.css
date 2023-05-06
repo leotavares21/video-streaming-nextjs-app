@@ -5,11 +5,11 @@
 
 @layer base {
   body {
-    @apply bg-secondary text-white scroll-smooth;
+    @apply bg-secondary text-gray-50 scroll-smooth;
   }
 
   h1 {
-    @apply text-3xl mb-4 font-medium;
+    @apply text-3xl;
   }
 
   h2 {
@@ -20,6 +20,7 @@
     @apply text-xl;
   }
 
+  h1,
   h2,
   h3 {
     @apply mb-4 font-medium;
@@ -31,37 +32,32 @@
 
   input,
   textarea {
-    @apply text-black bg-white placeholder-gray-300;
+    @apply text-black bg-gray-50 placeholder-gray-300;
   }
 }
 
 @layer components {
   .btn {
-    @apply flex items-center gap-2 px-6 py-3 font-medium rounded-3xl text-white hover:brightness-90;
+    @apply flex justify-center items-center gap-2 px-6 py-3 font-medium rounded-3xl text-gray-50 hover:brightness-90;
   }
 
   .btn-primary {
     @apply bg-primary;
   }
 
-  .btn-black {
-    @apply bg-black;
-  }
-
-  .input-form {
+  .input-base {
     @apply px-4 py-2;
   }
 
-  .input-auth {
-    @apply w-full px-4 py-3 text-black my-2 bg-gray-100 rounded-2xl;
+  .input-gray {
+    @apply w-full text-black bg-gray-100 rounded-2xl;
   }
 
-  .input-outline {
+  .input-default {
     @apply w-full focus:outline-none focus:ring-2 focus:ring-primary rounded-xl;
   }
 
   .scroll-style {
     @apply scrollbar scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200;
   }
-
 }

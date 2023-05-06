@@ -11,7 +11,7 @@ export function Layout({ children }: LayoutProps) {
 
   //Check if the route is the login or registration page.
   const hideHeader =
-    router.pathname === '/auth/sign-in' || router.pathname === '/auth/register';
+    router.pathname === '/auth/login' || router.pathname === '/auth/register';
 
   return (
     <>

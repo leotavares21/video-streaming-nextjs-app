@@ -40,7 +40,7 @@ function Profile({ user }: ProfileProps) {
     );
   }
   return (
-    <Button href="/auth/sign-in">
+    <Button href="/auth/login">
       <FaRegUserCircle className="text-xl" />
       <span>Entrar</span>
     </Button>

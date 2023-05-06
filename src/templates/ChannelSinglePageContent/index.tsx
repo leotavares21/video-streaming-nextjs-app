@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import { ChannelCard } from 'components/ChannelCard';
+import { Section } from 'components/Section';
 import { VideoPlayer } from 'components/VideoPlayer/VideoPlayer';
 import { VideosThumb } from 'components/VideosThumb/VideosThumb';
 
@@ -22,15 +23,15 @@ function ChannelSiglePage({ channel, status }: ChannelSiglePageProps) {
       <ChannelCard type="subscribe" channel={channel} />
 
       {status.live && (
-        <section className="mb-8">
+        <Section>
           <VideoPlayer className="mx-auto" />
-        </section>
+        </Section>
       )}
 
-      <section className="mb-8">
+      <Section>
         <h2>Videos</h2>
         <VideosThumb videos={channelFiltered} />
-      </section>
+      </Section>
     </>
   );
 }

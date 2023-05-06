@@ -12,7 +12,7 @@ export function Card({ imgSize, channel }: CardProps) {
     <figure className="flex items-center gap-6">
       <Link href={`/${channel.slug}`} className="flex items-center gap-6">
         <img
-          src={channel.channel_img}
+          src={channel.channelImg}
           alt={channel.name}
           className={`${imgSize} rounded-full border-4 border-primary`}
         />

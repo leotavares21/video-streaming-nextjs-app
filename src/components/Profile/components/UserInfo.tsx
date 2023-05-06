@@ -9,18 +9,16 @@ type UserInfo = {
 export function UserInfo({ user }: UserInfo) {
   return (
     <Link
-      href="/settings/profile"
+      href="/settings"
       className="flex items-center gap-3"
-      data-testid="btn-profile"
+      data-testid="btn-channel"
     >
       <img
-        src={user.img}
+        src={user.avatar}
         alt={user.name}
         className="rounded-full w-12 h-12 object-cover"
       />
-      <span className="font-medium">
-        {user.name} {user.last_name}
-      </span>
+      <span className="font-medium">{user.name}</span>
     </Link>
   );
 }

@@ -21,18 +21,19 @@ export type Videos = {
   thumbnail: string;
   live?: boolean;
   viewers: number;
-  total_views: number;
+  totalViews: number;
   channel: string;
-  channel_img: string;
+  channelImg: string;
 };
 
 export type User = {
   id: number;
   name: string;
-  last_name: string;
-  img: string;
-  my_channel: {
-    name: string;
+  avatar: string;
+  email: string;
+  password: string;
+  description: string;
+  myChannel: {
     followers: number;
     videos: Videos[];
   };
@@ -46,7 +47,7 @@ export type Channel = {
   id: number;
   name: string;
   slug: string;
-  channel_img: string;
+  channelImg: string;
   followers?: number;
   videos?: Videos[];
 };

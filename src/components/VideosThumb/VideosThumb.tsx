@@ -19,7 +19,7 @@ export function VideosThumb({ videos }: VideosThumbProps) {
           key={video.id}
         >
           {video.live && (
-            <span className="absolute top-5 left-5 bg-accent text-white px-2 py-1 rounded-full text-sm mr-2">
+            <span className="absolute top-5 left-5 bg-accent text-gray-50 px-2 py-1 rounded-full text-sm mr-2">
               Ao vivo
             </span>
           )}
@@ -36,7 +36,7 @@ export function VideosThumb({ videos }: VideosThumbProps) {
                 {video.live ? (
                   <>
                     <img
-                      src={video.channel_img}
+                      src={video.channelImg}
                       alt={video.channel}
                       className="rounded-full w-12 h-12"
                     />
@@ -50,7 +50,7 @@ export function VideosThumb({ videos }: VideosThumbProps) {
                 )}
               </div>
               <span className="text-gray-100">
-                {video.total_views} visualizações
+                {video.totalViews} visualizações
               </span>
             </div>
           </div>

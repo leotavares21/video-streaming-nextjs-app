@@ -1,22 +1,32 @@
 import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 
+import { zodResolver } from '@hookform/resolvers/zod';
+import { chatSchema } from 'schemas/chatSchema';
 import io, { Socket } from 'socket.io-client';
+import { z } from 'zod';
 
 import { PagesMapState } from 'store/types';
 
 export type Message = {
-  id: number;
   author: string;
-  author_img: string;
+  authorAvatar: string;
   text: string;
 };
 
+type ChatData = z.infer<typeof chatSchema>;
+
 export function useChat() {
   const [messages, setMessages] = useState<Message[]>([]);
-  const [newMessage, setNewMessage] = useState('');
   const [socket, setSocket] = useState<Socket>();
   const user = useSelector((state: PagesMapState) => state.user.data);
+
+  const chatForm = useForm<ChatData>({
+    resolver: zodResolver(chatSchema)
+  });
+
+  const { reset, watch, setValue } = chatForm;
 
   useEffect(() => {
     const newSocket = io('http://localhost:3000');
@@ -35,16 +45,19 @@ export function useChat() {
     }
   }, [socket]);
 
-  function handleMessageSubmit(event: React.FormEvent) {
-    event.preventDefault();
-    const message: Message = {
-      id: messages.length + 1,
-      author: `${user.name} ${user.last_name}`,
-      author_img: user.img,
-      text: newMessage
+  function handleSelectedEmoji(emoji: string) {
+    setValue('chatText', watch('chatText') + emoji);
+  }
+
+  function onChatSubmit(data: ChatData) {
+    const message = {
+      author: user.name,
+      authorAvatar: user.avatar,
+      text: data.chatText
     };
+
     setMessages([...messages, message]);
-    setNewMessage('');
+    reset();
     if (socket) {
       socket.emit('chat message', message);
     }
@@ -53,8 +66,8 @@ export function useChat() {
   return {
     user,
     messages,
-    newMessage,
-    setNewMessage,
-    handleMessageSubmit
+    onChatSubmit,
+    chatForm,
+    handleSelectedEmoji
   };
 }

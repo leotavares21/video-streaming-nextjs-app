@@ -3,6 +3,7 @@ module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx}',
     './src/components/**/*.{js,ts,jsx,tsx}',
+    './src/templates/**/*.{js,ts,jsx,tsx}',
     './src/app/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
@@ -44,10 +45,11 @@ module.exports = {
         primary: '#33CEF6',
         secondary: '#191A32',
         tertiary: '#33B0F6',
-        white: '#FBFBFF',
+        white: '#FFF',
         black: '#000',
         accent: '#FF2060',
         gray: {
+          50: '#FBFBFF',
           100: '#f1f1f1',
           200: '#C2C3CC',
           300: '#888',

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { ChannelCard } from 'components/ChannelCard/';
+import { ChannelCard } from 'components/ChannelCard';
 import { Chat } from 'components/Chat';
 import { VideoPlayer } from 'components/VideoPlayer/VideoPlayer';
 

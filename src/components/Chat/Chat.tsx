@@ -1,22 +1,34 @@
+import { FormProvider } from 'react-hook-form';
+import { BsEmojiLaughing } from 'react-icons/bs';
+import { MdSend } from 'react-icons/md';
+
+import data from '@emoji-mart/data';
+import EmojiPicker from '@emoji-mart/react';
 import { useClickOutside, useClickOutsideUtils } from 'hooks/useClickOutside';
+import { useLogin } from 'hooks/useLogin';
 import { useModal } from 'hooks/useModal';
 
 import { Button } from 'components/Button';
+import { Form } from 'components/Form';
 import { Modal } from 'components/Modal';
 
-import {
-  Messages,
-  ChatInput,
-  EmojiPicker,
-  EmojiToggleButton
-} from './components';
+import { Messages } from './components';
 import { useChat } from './hooks/useChat';
+
+type EmojiData = {
+  id: string;
+  native: string;
+  unified: string;
+};
 
 export function Chat() {
   const { openModal, setOpenModal, closeModal } = useModal();
 
-  const { user, messages, newMessage, setNewMessage, handleMessageSubmit } =
+  const { user, messages, onChatSubmit, chatForm, handleSelectedEmoji } =
     useChat();
+  const { loginForm, onLoginSubmit, handleLoginSubmit } = useLogin();
+
+  const { handleSubmit } = chatForm;
 
   const {
     isVisible,
@@ -38,24 +50,49 @@ export function Chat() {
 
       {user ? (
         <>
-          <EmojiPicker
-            isVisible={isVisible}
-            containerRef={containerRef}
-            newMessage={newMessage}
-            setNewMessage={setNewMessage}
-          />
+          <FormProvider {...chatForm}>
+            {isVisible && (
+              <div
+                className="absolute top-[2rem] right-[1rem] bottom-full"
+                ref={containerRef}
+              >
+                <EmojiPicker
+                  theme="dark"
+                  locale="pt"
+                  data={data}
+                  onEmojiSelect={(emoji: EmojiData) => {
+                    handleSelectedEmoji(emoji.native);
+                  }}
+                />
+              </div>
+            )}
 
-          <ChatInput
-            handleSubmit={handleMessageSubmit}
-            handleNewMessage={setNewMessage}
-            newMessage={newMessage}
-          >
-            <EmojiToggleButton
-              isVisible={isVisible}
-              toggleRef={toggleRef}
-              onOpen={handleClick}
-            />
-          </ChatInput>
+            <form
+              onSubmit={handleSubmit(onChatSubmit)}
+              className="flex items-center gap-2 w-full px-4"
+            >
+              <Form.Input name="chatText" placeholder="Mensagem..." />
+
+              <button
+                type="button"
+                className="hover:brightness-90"
+                onClick={() => handleClick(!isVisible)}
+                ref={toggleRef}
+              >
+                <BsEmojiLaughing aria-label="face laughing" />
+              </button>
+
+              <button type="submit">
+                <MdSend
+                  className="text-primary text-3xl hover:brightness-90"
+                  aria-label="enviar"
+                />
+              </button>
+            </form>
+            <div className="pl-4">
+              <Form.ErrorMessage field="chatText" />
+            </div>
+          </FormProvider>
         </>
       ) : (
         <>
@@ -70,19 +107,40 @@ export function Chat() {
             isOpen={openModal}
             onClose={closeModal}
           >
-            <form
-              action=""
-              className="p-4 flex justify-center items-center gap-2"
-            >
-              <input type="email" placeholder="E-mail" className="input-auth" />
-              <input
-                type="password"
-                placeholder="Senha"
-                className="input-auth"
-              />
+            <FormProvider {...loginForm}>
+              <form
+                onSubmit={handleLoginSubmit(onLoginSubmit)}
+                className="p-4 flex items-end gap-2"
+              >
+                <Form.Field>
+                  <Form.ErrorMessage field="email" />
+                  <Form.Label variant="gray-style" htmlFor="email">
+                    E-mail
+                  </Form.Label>
+                  <Form.Input
+                    name="email"
+                    type="email"
+                    variant="gray-style"
+                    placeholder="E-mail"
+                  />
+                </Form.Field>
 
-              <Button type="submit">Entrar</Button>
-            </form>
+                <Form.Field>
+                  <Form.ErrorMessage field="password" />
+                  <Form.Label variant="gray-style" htmlFor="password">
+                    Senha
+                  </Form.Label>
+                  <Form.Input
+                    name="password"
+                    type="password"
+                    variant="gray-style"
+                    placeholder="Senha"
+                  />
+                </Form.Field>
+
+                <Button type="submit">Entrar</Button>
+              </form>
+            </FormProvider>
           </Modal>
         </>
       )}

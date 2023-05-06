@@ -10,13 +10,13 @@ export function Messages({ messages }: MessagesProps) {
       {messages.length === 0 && (
         <span className="text-gray-200">Escreva sua mensagem...</span>
       )}
-      {messages.map((message) => (
+      {messages.map((message, index) => (
         <div
-          key={message.id}
+          key={index}
           className="flex gap-2 mb-4 text-ellipsis overflow-hidden whitespace-break-spaces"
         >
           <img
-            src={message.author_img}
+            src={message.authorAvatar}
             alt={message.author}
             className="w-8 h-8 rounded-full"
           />

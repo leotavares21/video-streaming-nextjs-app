@@ -1,37 +1,37 @@
 import Link from 'next/link';
-
-import { UrlObject } from 'url';
+import { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 
 import { handleStyleButton } from './utils';
 
-type ButtonProps = {
-  variant?: 'primary' | 'accent' | 'gray';
-  type?: 'button' | 'submit' | 'reset';
-  href?: UrlObject | string;
-  onClick?: () => void;
-  children: React.ReactNode;
-};
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
+    variant?: 'primary' | 'accent' | 'gray' | 'black';
+    type?: 'button' | 'submit' | 'reset';
+    className?: string;
+  };
 
 export function Button({
   variant = 'primary',
   type = 'button',
-  href,
-  children,
+  className,
   ...props
 }: ButtonProps) {
-  if (href) {
+  if (props.href) {
     return (
-      <Link href={href} legacyBehavior>
-        <a className={handleStyleButton(variant)} {...props}>
-          {children}
-        </a>
+      <Link href={props.href} legacyBehavior>
+        <a
+          className={`${handleStyleButton(variant)} ${className}`}
+          {...props}
+        />
       </Link>
     );
   }
 
   return (
-    <button type={type} className={handleStyleButton(variant)} {...props}>
-      {children}
-    </button>
+    <button
+      type={type}
+      className={`${handleStyleButton(variant)} ${className}`}
+      {...props}
+    />
   );
 }

@@ -21,7 +21,7 @@ export function ChannelPreview({ channels, type }: ChannelPreviewProps) {
           >
             <PreviewFigure>
               <img
-                src={channel.channel_img}
+                src={channel.channelImg}
                 alt={channel.name}
                 className="rounded-full w-10 h-10"
               />
@@ -45,7 +45,7 @@ export function ChannelPreview({ channels, type }: ChannelPreviewProps) {
         >
           <PreviewFigure>
             <img
-              src={channel.channel_img}
+              src={channel.channelImg}
               alt={channel.name}
               className="rounded-full w-20 h-20"
             />
