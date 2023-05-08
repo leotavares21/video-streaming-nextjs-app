@@ -1,9 +1,9 @@
 import Link from 'next/link';
 
-import { Videos } from 'store/types';
+import { Video } from 'store/@types';
 
 type VideosThumbProps = {
-  videos?: Videos[];
+  videos?: Video[];
 };
 
 export function VideosThumb({ videos }: VideosThumbProps) {
@@ -33,21 +33,15 @@ export function VideosThumb({ videos }: VideosThumbProps) {
           <div className="absolute bottom-0 left-0 right-0 p-4 bg-opacity-50 bg-gradient-to-b from-transparent to-black rounded-b-3xl">
             <div className="flex items-center justify-between mb-2">
               <div className="flex justify-between items-center gap-4">
-                {video.live ? (
-                  <>
-                    <img
-                      src={video.channelImg}
-                      alt={video.channel}
-                      className="rounded-full w-12 h-12"
-                    />
-                    <div>
-                      <p className="font-medium text-lg">{video.title}</p>
-                      <p className="text-gray-100 text-sm">{video.channel}</p>
-                    </div>
-                  </>
-                ) : (
+                <img
+                  src={video.profileImg}
+                  alt={video.profile}
+                  className="rounded-full w-12 h-12"
+                />
+                <div>
                   <p className="font-medium text-lg">{video.title}</p>
-                )}
+                  <p className="text-gray-100 text-sm">{video.profile}</p>
+                </div>
               </div>
               <span className="text-gray-100">
                 {video.totalViews} visualizações

@@ -11,7 +11,7 @@ import { Form } from 'components/Form';
 import { Modal } from 'components/Modal';
 import { VideosThumb } from 'components/VideosThumb';
 
-import { User } from 'store/types';
+import { User } from 'store/@types';
 
 import { useFormFunctions } from '../hook/useFormFunctions';
 
@@ -128,7 +128,7 @@ export function VideosTab({ user }: VideosTabProps) {
       <section>
         <h2 className="my-8">Lives passadas</h2>
 
-        <VideosThumb videos={user.myChannel.videos} />
+        <VideosThumb videos={user.myVideos} />
       </section>
     </div>
   );

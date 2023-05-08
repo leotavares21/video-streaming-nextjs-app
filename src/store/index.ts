@@ -1,8 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-
-import rootReducer from 'store/reducers/rootReducer';
-
-const store = createStore(rootReducer, applyMiddleware(thunk));
-
-export { store };
+export { useLivesStore } from './lives';
+export { useUserStore } from './user';
+export { useProfileStore } from './profile';
+export { useTrendVideosStore } from './trendVideos';

@@ -2,20 +2,20 @@ import { SiCashapp } from 'react-icons/si';
 
 import { Button } from 'components/Button';
 
-import { Channel } from 'store/types';
+import { Profile } from 'store/@types';
 
 import { ButtonGroup, Card, CardContainer } from './components';
 
-type ChannelCardProps = {
-  channel: Channel;
-  type?: 'full' | 'subscribe';
+type ProfileCardProps = {
+  profile: Profile;
+  type?: 'full' | 'follow';
 };
 
-export function ChannelCard({ channel, type }: ChannelCardProps) {
+export function ProfileCard({ profile, type }: ProfileCardProps) {
   if (type === 'full') {
     return (
       <CardContainer>
-        <Card imgSize="w-20 h-20" channel={channel} />
+        <Card imgSize="w-20 h-20" profile={profile} />
 
         <ButtonGroup>
           <Button variant="gray">
@@ -27,18 +27,18 @@ export function ChannelCard({ channel, type }: ChannelCardProps) {
       </CardContainer>
     );
   }
-  if (type === 'subscribe') {
+  if (type === 'follow') {
     return (
       <CardContainer>
-        <Card imgSize="w-24 h-24" channel={channel} />
+        <Card imgSize="w-24 h-24" profile={profile} />
 
-        <Button variant="accent">Inscrever-se</Button>
+        <Button variant="accent">Seguir</Button>
       </CardContainer>
     );
   }
   return (
     <CardContainer>
-      <Card imgSize="w-20 h-20" channel={channel} />;
+      <Card imgSize="w-20 h-20" profile={profile} />;
     </CardContainer>
   );
 }

@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { chatSchema } from 'schemas/chatSchema';
 import io, { Socket } from 'socket.io-client';
 import { z } from 'zod';
 
-import { PagesMapState } from 'store/types';
+import { useUserStore } from 'store';
 
 export type Message = {
   author: string;
@@ -20,7 +19,9 @@ type ChatData = z.infer<typeof chatSchema>;
 export function useChat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [socket, setSocket] = useState<Socket>();
-  const user = useSelector((state: PagesMapState) => state.user.data);
+  const {
+    state: { user }
+  } = useUserStore();
 
   const chatForm = useForm<ChatData>({
     resolver: zodResolver(chatSchema)

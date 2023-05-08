@@ -21,6 +21,7 @@ type EmojiData = {
   unified: string;
 };
 
+// TODO: create a history chat variant feat
 export function Chat() {
   const { openModal, setOpenModal, closeModal } = useModal();
 

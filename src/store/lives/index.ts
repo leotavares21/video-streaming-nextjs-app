@@ -1,0 +1,64 @@
+import { create } from 'zustand';
+
+import { Video } from '../@types';
+
+type StoreProps = {
+  state: { lives: Video[] };
+  actions: { fetchLives: () => void };
+};
+
+export const useLivesStore = create<StoreProps>(() => ({
+  state: {
+    lives: [
+      {
+        id: 1,
+        title: 'Video 1',
+        thumbnail: 'https://source.unsplash.com/random/500x400?video',
+        url: 'https://www.youtube.com/watch?v=KFlVgSq77Jw',
+        live: true,
+        totalViews: 5634,
+        viewers: 1520,
+        profile: 'Profile 1',
+        profileImg: 'https://source.unsplash.com/random/200x200?person'
+      },
+      {
+        id: 2,
+        title: 'Video 2',
+        thumbnail: 'https://source.unsplash.com/random/500x400?video',
+        url: 'https://www.youtube.com/watch?v=KFlVgSq77Jw',
+        live: true,
+        totalViews: 7453,
+        viewers: 840,
+        profile: 'Profile 2',
+        profileImg: 'https://source.unsplash.com/random/200x200?person'
+      },
+      {
+        id: 3,
+        title: 'Video 3',
+        thumbnail: 'https://source.unsplash.com/random/500x400?video',
+        url: 'https://www.youtube.com/watch?v=KFlVgSq77Jw',
+        live: true,
+        totalViews: 2864,
+        viewers: 510,
+        profile: 'Profile 3',
+        profileImg: 'https://source.unsplash.com/random/200x200?person'
+      },
+      {
+        id: 4,
+        title: 'Video 4',
+        thumbnail: 'https://source.unsplash.com/random/500x400?video',
+        url: 'https://www.youtube.com/watch?v=KFlVgSq77Jw',
+        live: true,
+        totalViews: 3546,
+        viewers: 720,
+        profile: 'Profile 4',
+        profileImg: 'https://source.unsplash.com/random/200x200?person'
+      }
+    ]
+  },
+  actions: {
+    fetchLives: () => {
+      console.log('data');
+    }
+  }
+}));

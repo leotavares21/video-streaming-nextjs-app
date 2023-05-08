@@ -36,6 +36,6 @@ describe('Home Page', () => {
     cy.get('[data-testid="tab-button2"]').click();
     cy.get('[data-testid="videos-thumbs"]').should('exist');
     cy.get('[data-testid="tab-button3"]').click();
-    cy.get('[data-testid="channel-preview"]').should('exist');
+    cy.get('[data-testid="profile-preview"]').should('exist');
   });
 });

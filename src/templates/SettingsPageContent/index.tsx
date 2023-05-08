@@ -1,19 +1,17 @@
-import { connect } from 'react-redux';
-
 import { useTabClick } from 'hooks/useTabClick';
 
 import { Tab } from 'components/Tab';
 
-import { PagesMapState, User } from 'store/types';
+import { useUserStore } from 'store';
 
 import { ProfileTab } from './components/ProfileTab';
 import { VideosTab } from './components/VideosTab';
 
-type SettingsPageProps = {
-  user: User;
-};
+export function SettingsPageContent() {
+  const {
+    state: { user }
+  } = useUserStore();
 
-function SettingsPage({ user }: SettingsPageProps) {
   const { activeTab, handleTabClick } = useTabClick();
 
   return (
@@ -42,11 +40,3 @@ function SettingsPage({ user }: SettingsPageProps) {
     </div>
   );
 }
-
-const mapStateToProps = (state: PagesMapState) => ({
-  user: state.user.data
-});
-
-const SettingsPageContent = connect(mapStateToProps)(SettingsPage);
-
-export { SettingsPageContent };

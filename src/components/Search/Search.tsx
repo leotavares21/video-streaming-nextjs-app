@@ -2,25 +2,24 @@ import Link from 'next/link';
 import { FormProvider, useForm } from 'react-hook-form';
 import { FiSearch } from 'react-icons/fi';
 import { IoCloseCircle } from 'react-icons/io5';
-import { connect } from 'react-redux';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useClickOutside, useClickOutsideUtils } from 'hooks/useClickOutside';
 import { searchSchema } from 'schemas/searchSchema';
 import { z } from 'zod';
 
-import { ChannelPreview } from 'components/ChannelPreview';
 import { Form } from 'components/Form';
+import { ProfilePreview } from 'components/ProfilePreview';
 
-import { PagesMapState, User } from 'store/types';
-
-type SearchProps = {
-  user: User;
-};
+import { useUserStore } from 'store';
 
 type searchData = z.infer<typeof searchSchema>;
 
-function Search({ user }: SearchProps) {
+export function Search() {
+  const {
+    state: { user }
+  } = useUserStore();
+
   const searchForm = useForm<searchData>({
     resolver: zodResolver(searchSchema)
   });
@@ -50,7 +49,7 @@ function Search({ user }: SearchProps) {
       >
         <FiSearch className="text-black absolute left-3 text-xl" />
 
-        <Form.Field customRef={toggleRef}>
+        <Form.Field custom_ref={toggleRef}>
           <Form.Input
             name="searchTerm"
             placeholder="Busque por Videos ou Canais..."
@@ -69,7 +68,7 @@ function Search({ user }: SearchProps) {
           <div className="bg-gray-50 w-full min-h-[6rem] h-[14rem] overflow-y-auto scroll-style top-full mt-[1.5px] p-4 rounded-lg absolute">
             <Form.ErrorMessage field="searchTerm" />
             <Link
-              href="/channel/video/id"
+              href="/profile/video/id"
               className="flex items-center gap-4 mb-2 hover:bg-gray-100"
             >
               <div className="flex justify-center items-center w-10 h-10">
@@ -78,18 +77,10 @@ function Search({ user }: SearchProps) {
               <span className="text-gray-500 text-lg">video name</span>
             </Link>
 
-            <ChannelPreview channels={user.following.channels} type="search" />
+            <ProfilePreview profiles={user.following.profiles} type="search" />
           </div>
         )}
       </form>
     </FormProvider>
   );
 }
-
-const mapStateToProps = (state: PagesMapState) => ({
-  user: state.user.data
-});
-
-const SearchComponent = connect(mapStateToProps)(Search);
-
-export { SearchComponent as Search };

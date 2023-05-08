@@ -10,7 +10,7 @@ import { Form } from 'components/Form';
 
 import { handleIfIsEditing } from '../utils';
 
-import { User } from 'store/types';
+import { User } from 'store/@types';
 
 type profileData = z.infer<typeof profileSchema>;
 

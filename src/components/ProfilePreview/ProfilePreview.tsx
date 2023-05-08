@@ -1,33 +1,33 @@
 import Link from 'next/link';
 
-import { Channel } from 'store/types';
+import { Profile } from 'store/@types';
 
 import { PreviewFigure } from './components/PreviewFigure';
 
-type ChannelPreviewProps = {
-  channels: Channel[];
+type ProfilePreviewProps = {
+  profiles: Profile[];
   type?: 'search';
 };
 
-export function ChannelPreview({ channels, type }: ChannelPreviewProps) {
+export function ProfilePreview({ profiles, type }: ProfilePreviewProps) {
   if (type === 'search') {
     return (
       <>
-        {channels.map((channel) => (
+        {profiles.map((profile) => (
           <Link
-            href={`/${channel.slug}`}
+            href={`/${profile.slug}`}
             className="flex mb-2 p-1 hover:bg-gray-100"
-            key={channel.id}
+            key={profile.id}
           >
             <PreviewFigure>
               <img
-                src={channel.channelImg}
-                alt={channel.name}
+                src={profile.profileImg}
+                alt={profile.name}
                 className="rounded-full w-10 h-10"
               />
 
               <figcaption className="text-gray-500 text-lg">
-                {channel.name}
+                {profile.name}
               </figcaption>
             </PreviewFigure>
           </Link>
@@ -37,21 +37,21 @@ export function ChannelPreview({ channels, type }: ChannelPreviewProps) {
   }
   return (
     <div className="flex flex-wrap md:justify-between md:gap-4 gap-12">
-      {channels.map((channel) => (
+      {profiles.map((profile) => (
         <Link
-          href={`/${channel.slug}`}
+          href={`/${profile.slug}`}
           className="flex mb-2 p-2 rounded-xl bg-gray-500 bg-opacity-25 hover:bg-gray-700 hover:bg-opacity-50"
-          key={channel.id}
+          key={profile.id}
         >
           <PreviewFigure>
             <img
-              src={channel.channelImg}
-              alt={channel.name}
+              src={profile.profileImg}
+              alt={profile.name}
               className="rounded-full w-20 h-20"
             />
 
             <figcaption className="text-gray-100 text-lg font-medium">
-              {channel.name}
+              {profile.name}
             </figcaption>
           </PreviewFigure>
         </Link>

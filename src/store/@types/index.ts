@@ -1,29 +1,30 @@
 export type LivesState = {
-  readonly data: Videos[];
+  readonly data: Video[];
 };
 
 export type VideosState = {
-  readonly data: Videos[];
+  readonly data: Video[];
 };
 
 export type UserState = {
   readonly data: User;
 };
 
-export type ChannelState = {
-  readonly data: Channel;
-  readonly status: Channel_Status;
+export type ProfileState = {
+  readonly data: Profile;
+  readonly status: Profile_Status;
 };
 
-export type Videos = {
+export type Video = {
   id: number;
   title: string;
   thumbnail: string;
+  url: string;
   live?: boolean;
   viewers: number;
   totalViews: number;
-  channel: string;
-  channelImg: string;
+  profile: string;
+  profileImg: string;
 };
 
 export type User = {
@@ -33,39 +34,37 @@ export type User = {
   email: string;
   password: string;
   description: string;
-  myChannel: {
-    followers: number;
-    videos: Videos[];
-  };
+  followers: number;
+  myVideos: Video[];
   following: {
-    channels: Channel[];
-    videos: Videos[];
+    profiles: Profile[];
+    videos: Video[];
   };
 };
 
-export type Channel = {
+export type Profile = {
   id: number;
   name: string;
   slug: string;
-  channelImg: string;
+  profileImg: string;
   followers?: number;
-  videos?: Videos[];
+  videos?: Video[];
 };
 
-export type Channel_Status = {
+export type Profile_Status = {
   live: boolean;
 };
 
 export type PagesMapState = {
-  channel: {
-    readonly data: Channel;
-    readonly status: Channel_Status;
+  profile: {
+    readonly data: Profile;
+    readonly status: Profile_Status;
   };
   videos: {
-    readonly data: Videos[];
+    readonly data: Video[];
   };
   lives: {
-    readonly data: Videos[];
+    readonly data: Video[];
   };
   user: {
     readonly data: User;

@@ -1,5 +1,5 @@
 type FieldProps = React.HTMLAttributes<HTMLDivElement> & {
-  customRef?: React.MutableRefObject<null>;
+  custom_ref?: React.MutableRefObject<null>;
 };
 
 export function Field(props: FieldProps) {
@@ -7,7 +7,7 @@ export function Field(props: FieldProps) {
     <div
       className="flex flex-col gap-1 w-full"
       {...props}
-      ref={props.customRef}
+      ref={props.custom_ref}
     />
   );
 }

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { User } from 'store/types';
+import { User } from 'store/@types';
 
 type UserInfo = {
   user: User;
@@ -11,7 +11,7 @@ export function UserInfo({ user }: UserInfo) {
     <Link
       href="/settings"
       className="flex items-center gap-3"
-      data-testid="btn-channel"
+      data-testid="btn-profile"
     >
       <img
         src={user.avatar}

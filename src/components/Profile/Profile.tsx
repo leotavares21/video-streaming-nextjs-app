@@ -1,19 +1,18 @@
 import { FaRegUserCircle } from 'react-icons/fa';
-import { connect } from 'react-redux';
 
 import { useClickOutside, useClickOutsideUtils } from 'hooks/useClickOutside';
 
 import { Button } from 'components/Button';
 
-import { PagesMapState, User } from 'store/types';
+import { useUserStore } from 'store';
 
 import { ProfileMenu, ProfileToggleButton, UserInfo } from './components';
 
-type ProfileProps = {
-  user: User;
-};
+export function Profile() {
+  const {
+    state: { user }
+  } = useUserStore();
 
-function Profile({ user }: ProfileProps) {
   const {
     isVisible,
     containerRef,
@@ -46,11 +45,3 @@ function Profile({ user }: ProfileProps) {
     </Button>
   );
 }
-
-const mapStateToProps = (state: PagesMapState) => ({
-  user: state.user.data
-});
-
-const ProfileComponent = connect(mapStateToProps)(Profile);
-
-export { ProfileComponent as Profile };
