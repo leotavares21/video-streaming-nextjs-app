@@ -3,8 +3,6 @@ import { describe, it, expect, vitest } from 'vitest';
 
 import { handleStyleButton } from './utils';
 
-import '@testing-library/jest-dom';
-
 import { Button } from './Button';
 
 describe('Button', () => {
