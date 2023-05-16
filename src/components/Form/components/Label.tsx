@@ -2,6 +2,7 @@ import { LabelHTMLAttributes } from 'react';
 
 type LabelProps = LabelHTMLAttributes<HTMLLabelElement> & {
   variant?: 'gray-style';
+  htmlFor: string;
 };
 
 export function Label(props: LabelProps) {

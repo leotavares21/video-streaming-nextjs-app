@@ -1,10 +1,10 @@
-import { Container } from './Container';
-import { ErrorMessage } from './ErrorMessage';
-import { Field } from './Field';
-import { Input } from './Input';
-import { Label } from './Label';
-import { TextArea } from './TextArea';
-import { Wrapper } from './Wrapper';
+import { Container } from './components/Container';
+import { ErrorMessage } from './components/ErrorMessage';
+import { Field } from './components/Field';
+import { Input } from './components/Input';
+import { Label } from './components/Label';
+import { TextArea } from './components/TextArea';
+import { Wrapper } from './components/Wrapper';
 
 export const Form = {
   Label,

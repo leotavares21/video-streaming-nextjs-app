@@ -5,12 +5,12 @@ import { handleStyleButton } from './utils';
 
 import { Button } from './Button';
 
-describe('Button', () => {
+describe('<Button/>', () => {
   it('should render a button with the default variant and type', () => {
     const { getByRole } = render(<Button>Hello</Button>);
     const button = getByRole('button');
 
-    expect(button).toBeInTheDocument();
+    expect(button).toBeVisible();
     expect(button).toHaveClass('btn-primary');
     expect(button).toHaveAttribute('type', 'button');
     expect(button).toHaveTextContent('Hello');
@@ -24,7 +24,7 @@ describe('Button', () => {
     );
     const button = getByRole('button');
 
-    expect(button).toBeInTheDocument();
+    expect(button).toBeVisible();
     expect(button).toHaveClass('border-gray-200');
     expect(button).toHaveAttribute('type', 'submit');
     expect(button).toHaveTextContent('Submit');
@@ -34,7 +34,7 @@ describe('Button', () => {
     const { getByRole } = render(<Button href="/about">About</Button>);
     const link = getByRole('link');
 
-    expect(link).toBeInTheDocument();
+    expect(link).toBeVisible();
     expect(link).toHaveClass('btn-primary');
     expect(link).toHaveAttribute('href', '/about');
     expect(link).toHaveTextContent('About');
@@ -48,7 +48,7 @@ describe('Button', () => {
     );
     const link = getByRole('link');
 
-    expect(link).toBeInTheDocument();
+    expect(link).toBeVisible();
     expect(link).toHaveClass('border-accent');
     expect(link).toHaveAttribute('href', '/contact');
     expect(link).toHaveTextContent('Contact');

@@ -5,5 +5,3 @@ npx --no-install
 
 npm run build
 npm run test --bail
-
-exit 1
