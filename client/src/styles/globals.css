@@ -1,0 +1,63 @@
+/* eslint-disable */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-secondary text-gray-50 scroll-smooth;
+  }
+
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply mb-4 font-medium;
+  }
+
+  a {
+    @apply no-underline;
+  }
+
+  input,
+  textarea {
+    @apply text-black bg-gray-50 placeholder-gray-300;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply flex justify-center items-center gap-2 px-6 py-3 font-medium rounded-3xl text-gray-50 hover:brightness-90;
+  }
+
+  .btn-primary {
+    @apply bg-primary;
+  }
+
+  .input-base {
+    @apply px-4 py-2;
+  }
+
+  .input-gray {
+    @apply w-full text-black bg-gray-100 rounded-2xl;
+  }
+
+  .input-default {
+    @apply w-full focus:outline-none focus:ring-2 focus:ring-primary rounded-xl;
+  }
+
+  .scroll-style {
+    @apply scrollbar scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200;
+  }
+}

@@ -1,0 +1,1 @@
+export { VideosThumb } from './VideosThumb';
